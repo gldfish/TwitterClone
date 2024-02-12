@@ -1,0 +1,449 @@
+/* Font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+
+* {
+    margin: 0;
+}
+
+/* CSS Variable Declarations */
+:root {
+    /* Color */
+    --bg-color: #EFF0F5;
+    --bg-color-container: #E8EAF2;
+
+    --bg-color-btn: #A7B9DA;
+
+    --font-color-dark: #7D9ACA;
+    --font-color-gray: #888888;
+    --font-color-light: #ffffff;
+    
+    /* Image Size */
+    --brand-size-sm: 3rem;
+    --icon-size-xsm: 1.5rem;
+    --icon-size-sm: 2rem;
+    --icon-size-m: 3rem;
+
+    --img-profile-sm: 4rem;
+
+    --box-radius: 12px;
+    --box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+
+
+/* Nav Bar */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--bg-color);
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    padding-left: 4rem;
+    z-index: 10; 
+}
+
+nav img {
+    height: var(--brand-size-sm);
+}
+
+nav a {
+    padding-left: 2rem;
+    font-weight: 600;
+    font-size: 22px;
+}
+
+nav .fa-solid {
+    display: none;
+}
+
+@media screen and (max-width: 600px) {
+    nav img {
+        display: none;
+    }
+
+    nav {
+        padding-left: 0;
+        justify-content: space-between;
+    }
+
+    nav .fa-solid {
+        display: block;
+        font-size: 20px;
+        padding: 0rem;
+        padding-left: 2.5rem;
+    }
+    
+    nav a {
+        padding: 0.1rem;
+        padding-right: 4rem;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+
+
+
+
+/* Profile Section */
+.profile-section {
+    background-color: var(--bg-color-container);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1rem;
+    margin-right: 0.5rem;
+    border-radius: var(--box-radius);
+    box-shadow: var(--box-shadow);
+    font-size: 22px;
+}
+
+.profile-user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.profile-section img {
+    height: var(--brand-size-sm);
+    margin-top: 1.5rem;
+}
+
+.profile-name {
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 0.8rem;
+    text-align: center;
+    margin: 0.5rem 14px 0 14px;
+}
+
+.profile-handler {
+    font-size: 14px;
+    color: var(--font-color-dark);
+    text-align: center;
+    margin: 0 14px;
+}
+
+.profile-bio {
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    margin: 1rem 14px 0 14px;
+}
+
+
+
+
+
+/* Option Section */
+.option-section {
+    background-color: var(--bg-color-container);
+    display: flex;
+    flex-direction: column;
+    margin-right: 0.5rem;
+    border-radius: var(--box-radius);
+    box-shadow: var(--box-shadow);
+}
+
+.option-section a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+    margin: 1rem 0;
+    font-weight: 600;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+.option-section a:first-child {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.option-section a:last-child {
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+}
+
+.option-section img {
+    height: var(--icon-size-sm);   
+    margin-right: 15%;
+}
+
+
+
+
+/* Sidebar (Mobile View) */
+.sidebar {
+    display: none;
+}
+
+/* -----------------MEDIA QUERIES-------------------*/
+/*--------FOR PHONES---------*/
+@media screen and (max-width: 600px) {
+    .sidebar {
+        display: block;
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: var(--bg-color);
+        overflow-x: hidden;
+        transition: 0.4s;
+        padding-top: 6rem;
+        
+    }
+
+    .mobile--profile-section {
+        background-color: var(--bg-color-container);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 1rem;
+        border-radius: var(--box-radius);
+        box-shadow: var(--box-shadow);
+        font-size: 22px;
+        margin-right: 1.5rem;
+        margin-left: 1.5rem;
+    }
+
+    .mobile--profile-user {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    
+    .mobile--profile-section img {
+        height: var(--brand-size-sm);
+        margin-top: 1.5rem;
+    }
+    
+    .mobile--profile-name {
+        font-size: 18px;
+        font-weight: 600;
+        margin-top: 0.8rem;
+        text-align: center;
+        margin: 0.5rem 14px 0 14px;
+    }
+    
+    .mobile--profile-handler {
+        font-size: 14px;
+        color: var(--font-color-dark);
+        text-align: center;
+        margin: 0 14px;
+    }
+    
+    .mobile--profile-bio {
+        font-size: 14px;
+        font-weight: 600;
+        text-align: center;
+        margin: 1rem 14px 0 14px;
+        padding-bottom: 1rem;
+    }
+
+    .mobile--option-section {
+        background-color: var(--bg-color-container);
+        display: flex;
+        flex-direction: column;
+        margin-right: 1.5rem;
+        margin-left: 1.5rem;
+        border-radius: var(--box-radius);
+        box-shadow: var(--box-shadow);
+    }
+    
+    .mobile--option-section a {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: black;
+        margin: 1rem 0;
+        font-weight: 600;
+        margin-left: 15%;
+        margin-right: 15%;
+    }
+    
+    .mobile--option-section a:first-child {
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+    }
+    
+    .mobile--option-section a:last-child {
+        margin-bottom: 2rem;
+        margin-top: 1rem;
+    }
+    
+    .mobile--option-section img {
+        height: var(--icon-size-sm);   
+        margin-right: 15%;
+    }
+}
+ 
+
+/* Trending Section */
+.trending-section {
+    background-color: var(--bg-color-container);
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    margin-left: 0.5rem;
+    border-radius: var(--box-radius);
+    box-shadow: var(--box-shadow);
+}
+
+.trending-title {
+    padding-top: 1rem;
+    padding-left: 0.8rem;
+}
+
+.trending-title p:first-child {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+}
+
+.trending-title p:last-child {
+    color: var(--font-color-gray);
+    font-size: 13px;
+}
+
+.trending-content {
+
+}
+
+.trending-specific {
+    padding-left: 0.8rem;
+    margin-top: 1rem;
+}
+
+.trending-specific p:first-child {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+}
+
+.trending-specific p:last-child {
+    color: var(--font-color-gray);
+    font-size: 13px;
+    margin-bottom: 0.2rem;
+}
+
+.trending-content:last-child {
+    padding-bottom: 1rem;
+}
+
+
+
+/* Follow Section */
+.follow-section {
+    background-color: var(--bg-color-container);
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    margin-left: 0.5rem;
+    border-radius: var(--box-radius);
+    box-shadow: var(--box-shadow);
+}
+
+.follow-title {
+    font-weight: 600;
+    margin-left: 1rem;
+    margin-top: 1rem;
+}
+
+.follow-container {
+    margin-left: 1rem;
+}
+
+.follow-container p {
+    margin-left: 1rem;
+}
+
+.follow-profile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 1rem;
+    margin: 1rem 0;
+}
+
+.follow-profile img {
+    height: var(--icon-size-m);  
+}
+
+.follow-user {
+    width: 60%; 
+    display: flex;
+    flex-direction: column;
+}
+
+.follow-user p:first-child {
+    font-weight: 600;
+}
+
+.follow-user p:last-child {
+    color: var(--font-color-gray);
+    font-size: 14px;
+}
+
+
+.profileFollowBtn {
+    -webkit-appearance: none; /* for safari */
+    font-weight: 600;
+    background-color: var(--bg-color-btn);
+    color: var(--font-color-light);
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    outline: none;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+}
+
+.left-container i {
+    display: none;
+}
+
+
+/* Media query for people to follow */
+
+
+@media (max-width: 1250px) {
+    .follow-profile {
+        display: flex;
+        flex-direction: column;
+        margin-top: 1.2rem;
+        align-items: center;
+    }
+
+    .profileFollowBtn {
+        margin-top: 0.5rem;
+    }
+
+    .follow-profile img {
+        display: block;  
+    }
+
+    .follow-user {
+        width: 100%;
+        padding: 0;
+        margin-left: -1rem;
+        font-size: 14px;
+        
+    }
+
+    .follow-user p {
+        text-align: center;        
+    }
+}
+

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="./src/styles/feed_styles.css">
+    
+    <!-- JavaScript -->
+    <script src = "./src/scripts/common.js"></script>
+    <script type="module" src = "./src/scripts/common_exports.js"></script>
+    
+    <!-- Font Awesome CDN Link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <title>Document</title>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <img class="brand" src="image/brand.png" />
+        <i class="fa-solid fa-bars" id="sidebarIcon" onclick="toggleSideBar()"></i>
+        <a id = "brandname">Brand Name</a>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="feed--main-container">
+
+        <!-- Left Body Container -->
+        <div class="feed--left-container">
+            
+            <!-- Profile Section -->
+            <section class="profile-section">
+                <div class="profile-user">
+                    <img src="image/2.png" />
+                    <p class="profile-name">bins bins bins</p>
+                    <p class="profile-handler">@hatdog</p>
+                    <p class="profile-bio">chipi chipi chapa chapa dubi dubi daba daba</p>
+                </div>
+
+                <div class = "feed-create-post">
+                    <form id="postForm">
+                        <textarea id="postText" class="post-area" placeholder="What's on your mind?"></textarea>
+                    </form>
+                    <button class="post-button"><i class="fa-regular fa-paper-plane"></i>Post</button>
+                </div>
+                
+            </section>
+
+
+            <section class="option-section">
+                <a href="profile.html">
+                    <img src="image/profile.png" />
+                    <p>Profile</p>
+                </a>            
+                <a href="feed.html">
+                    <img src="image/feed.png" />
+                    <p>Feed</p>
+                </a>
+                <a href="news.html">
+                    <img src = "image/news.png"/>
+                    <p>News</p>
+                </a>
+                <a href="index.html">
+                    <img src="image/logout.png" />
+                    <p>Logout</p>
+                </a>
+            </section>
+        </div>
+
+        <!-- Middle Body Container -->
+        <div class="feed-middle-container">
+
+            <!-- Create New Post -->
+            <div class = "feed--center-post">
+                <form>
+                    <textarea id="postTextMobile" class="center-post-area" placeholder="What's on your mind?"></textarea>
+                </form>
+                <button class="center-post-button" id="mobile--post"><i class="fa-regular fa-paper-plane"></i>Post</button>
+            </div>
+
+            <!-- Feed Post Content -->
+            <section class="feed--post-section">
+
+                
+                <!-- Feed Content -->
+                <div class="feed--post-content" id="feed--post-content">
+        
+                    <!--                     
+                    STRUCTURE
+                    <div class="feed--post-user">
+                        <img src="image/2.png" />
+                        <div class="feed--post-info">
+                            <div class="feed--user-info">
+                                <p class="feed--username">Kim Chaewon</p>
+                                <p class="feed--userhandle">@_chaechae_1</p>
+                            </div>
+                            <p class="feed--time">45 mins ago.</p>
+                        </div>
+                    </div>
+
+                    <div class="feed--post-text">
+                        hatdog hatdog hatdog hatdog hatdog hatdog hatdog hatdog  
+                    </div>
+
+                    <div class="feed--post-interaction">    
+                        <div class="feed--like-display">
+                            <img src="image/like.png" />
+                            <p>4324 Likes</p>
+                        </div>
+                        <button class="likePostBtn"><i class="fa-regular fa-heart"></i>Like</button>
+
+                    </div> 
+                     -->
+
+                </div>
+
+            </section>
+        </div>
+
+        <!-- Right Body Container -->
+        <div class="feed-right-container">
+
+            <!-- Trending Section -->
+            <section class="trending-section">
+                <div class="trending-title">
+                    <p>Trends for you</p>
+                    <p>TRENDING IN THE PHILIPPINES</p>
+                </div>
+                <div class="trending-content">
+                    <div class="trending-specific">
+                        <p>#hehe</p>
+                        <p>342.k Tweets</p>
+                    </div>
+                    <div class="trending-specific">
+                        <p>#hehe</p>
+                        <p>342.k Tweets</p>
+                    </div>
+                    <div class="trending-specific">
+                        <p>#hehe</p>
+                        <p>342.k Tweets</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Follow Section -->
+            <section class="follow-section">
+                <p class="follow-title">People you may know</p>
+                <div class="follow-container">
+                    <div class="follow-profile">
+                        <img src="image/2.png" />
+                        <div class="follow-user">
+                            <p>Kim Chaewon</p>
+                            <p>@_chaechae_1</p>
+                        </div>
+                        <button class="profileFollowBtn">Follow</button>
+                    </div>
+
+                    <div class="follow-profile">
+                        <img src="image/2.png" />
+                        <div class="follow-user">
+                            <p>Kim</p>
+                            <p>@_chaech1</p>
+                        </div>
+                        <button class="profileFollowBtn">Follow</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+
+        <!--Side Bar (For Mobile View)-->
+        <div class="sidebar">
+
+            <!-- Profile Section -->
+            <section class="mobile--profile-section">
+                <div class="mobile--profile-user">
+                    <img src="image/2.png" />
+                    <p class="mobile--profile-name">bins bins bins</p>
+                    <p class="mobile--profile-handler">@hatdog</p>
+                    <p class="mobile--profile-bio">chipi chipi chapa chapa dubi dubi daba daba</p>
+                </div>
+            </section>
+
+            <section class="mobile--option-section">
+                <a href="profile.html">
+                    <img src="image/profile.png" />
+                    <p>Profile</p>
+                </a>            
+                <a href="feed.html">
+                    <img src="image/feed.png" />
+                    <p>Feed</p>
+                </a>
+                <a href="news.html">
+                    <img src = "image/news.png"/>
+                    <p>News</p>
+                </a>
+                <a href="#" onclick="toggleDiscoverSection('feed-right-container', 'feed-middle-container'); toggleSideBar();" id="discoversection">
+                    <img src="image/discover.png" />
+                    <p>Discover</p>
+                </a>
+                <a href="index.html">
+                    <img src="image/logout.png" />
+                    <p>Logout</p>
+                </a>
+            </section>
+
+        </div>
+
+    </div>
+    
+    <script type="module" src="./src/scripts/feed.js"></script>
+</body>
+</html>

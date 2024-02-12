@@ -1,0 +1,202 @@
+/* global main styles */
+@import url(main_styles.css);
+
+/*Main background color&font */
+body {
+    background-color: var(--bg-color);
+    font-family: 'Inter', sans-serif;
+    overflow: hidden;
+}
+
+/*LOGO*/
+.brand {
+    width: 78px; 
+    height: auto; 
+    display: block;
+    margin: 0 auto; 
+    position: absolute;
+    top: 60px; 
+    left: 50%; 
+    transform: translateX(-50%); 
+}
+
+
+.login--label {
+    top: 150px;
+    font-size: 30px;
+    font-weight: bolder;
+    color: var(--font-color-dark);
+    left: 100px;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+}
+
+.login--form-box{
+    width: 380px;
+    height: 480px;
+    position: relative;
+    margin: 6% auto;
+    background: var(--bg-color-container);
+    padding: 5px;
+    box-shadow: var(--box-shadow);
+    justify-content: space-between;
+}
+
+.login--input-group{
+    top: 180px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.login--input-field{
+    padding: 15px 0px;
+    width: 333px;
+    cursor: pointer;
+    border: 0px;
+    border-radius: 6px;
+    color: var(--font-color-gray);
+    outline: none;
+    margin-bottom: 15px;
+    text-decoration: none;
+    text-align: left;
+    text-indent: 6%;
+}
+
+
+.login--button-box{
+    width: 333px;
+    background-color: var(--bg-color-btn);
+    border-radius: 6px;
+    outline: none;
+    margin: 240px auto;
+    text-decoration: none;
+    border: none;
+    margin: 210px auto;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.toggle-btn{
+    padding: 10px 30px;
+    cursor: pointer;
+    border: 0;
+    outline: none;
+    color: var(--font-color-light);
+    background: transparent;
+    position: relative;
+}
+
+.login--index{
+    font-size: 10px;
+    text-align: center;
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+.login--index a {
+    text-decoration: none;
+    color: var(--font-color-dark);
+    font-size: 13px;
+}
+
+@media only screen and (max-width: 600px) {
+    .brand {
+        width: 80px;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+        position: absolute;
+        top: 60px;
+        left: 50%;
+    }
+
+    .login--label {
+        font-size: 25px;
+        font-weight: bolder;
+        color: var(--font-color-dark);
+        margin-left: -180px;
+        width: calc(100% - 2rem);
+        margin-bottom: 0;
+        top: 150px;
+        text-align: center;
+        position: relative;
+    }
+
+    .login--form-box {
+        width: 100%;
+        max-width: 300px;
+        height: 600px;
+        position: relative;
+        background: var(--bg-color-container);
+        padding: 20px; 
+        box-shadow: var(--box-shadow);
+        display: flex; 
+        align-items: center;
+        flex-direction: column; 
+        justify-content: space-between; 
+    }
+
+    .login--input-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .login--input-field {
+        padding: 15px 30px;
+        font-size: 14px;
+        width: calc(100% - .5rem);
+        cursor: pointer;
+        margin-top: 0px; 
+        border-radius: 6px;
+        color: var(--font-color-gray);
+        outline: none;
+        text-decoration: none;
+        text-align: left;
+        margin-bottom: 20px;
+    }
+
+    .login--button-box {
+        width: 90%;
+        background-color: var(--bg-color-btn);
+        border-radius: 6px;
+        outline: none;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center; 
+    }
+
+    .toggle-btn{
+        padding: 10px 30px;
+        cursor: pointer;
+        border: 0;
+        outline: none;
+        color: var(--font-color-light);
+        background: transparent;
+        position: relative;
+        font-size: 20px;
+    }
+
+    .login--index {
+        font-size: 10px;
+        text-align: center;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-bottom: 40px;
+        bottom: 10px;
+    }
+
+}
