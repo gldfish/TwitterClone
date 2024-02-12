@@ -4,7 +4,6 @@ let username;
 let password;
 let token;
 
-
 document.getElementById('nextButton').addEventListener('click', function() {
     
     // Get username
@@ -12,23 +11,20 @@ document.getElementById('nextButton').addEventListener('click', function() {
     
     // Get password
     password = document.querySelector('.login--input-field[placeholder="Password"]').value;
-     
-
-    // ADD VALIDATION IF USER EXISTS
-
-    // ADD VALIDATION IF BLANK FIELD
-
 
     // login
-    login();
-    
-    // Redirect to the next page
-    window.location.href = 'feed.html';
+    login().then(() => {
+        if (token) {
+            window.location.href = 'feed.html';
+        } else {
+            console.log("Token is null. Login failed.");
+        }
+    });
 });
 
 
 // login backend
-function login() {
+async function login() {
     event.preventDefault();
 
     var raw = JSON.stringify({
@@ -45,11 +41,10 @@ function login() {
         },
     };
 
-
-    // fetch
-    fetch("http://localhost:3000/api/v1/auth/login", fetchRequest)
-    .then(response => response.text())
-    .then(async result => {
+    try {
+        // fetch
+        const response = await fetch("http://localhost:3000/api/v1/auth/login", fetchRequest);
+        const result = await response.text();
         if (result) {
             console.log(result);
             token = "Bearer " + result;   
@@ -58,10 +53,9 @@ function login() {
         } else {
             console.log("Error: Result is undefined or empty.");
         }
-    })
-    .catch(error => console.log('error', error));
-
-    
+    } catch (error) {
+        console.log('error', error);
+    }
 }
 
 
