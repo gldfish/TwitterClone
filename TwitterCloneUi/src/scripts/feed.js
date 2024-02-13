@@ -158,8 +158,10 @@ function createPost(postsList) {
         const likeButton = document.createElement('button');
         likeButton.setAttribute('class', 'likePostBtn');
         likeButton.innerHTML = '<i class="fa-regular fa-heart"></i>Like';
-
-
+        
+        likeButton.addEventListener('click', likePost)
+        likeButton.setAttribute('id', postsList[i]['postId']);
+        // console.log(postsList[i])
 
 
         interactionPost.appendChild(likeDisplay);
@@ -174,6 +176,12 @@ function createPost(postsList) {
 
     }
     
+}
+
+
+function likePost() {
+    console.log("liek")
+    console.log(this.id)
 }
 
 
