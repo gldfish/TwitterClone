@@ -1,16 +1,32 @@
-
-
-let username;
-let password;
+let userUsername;
+let userPassword;
 let token;
 
 document.getElementById('nextButton').addEventListener('click', function() {
     
     // Get username
-    username = document.querySelector('.login--input-field[placeholder="Username"]').value;
+    userUsername = document.querySelector('.login--input-field[placeholder="Username"]').value;
     
     // Get password
-    password = document.querySelector('.login--input-field[placeholder="Password"]').value;
+    userPassword = document.querySelector('.login--input-field[placeholder="Password"]').value;
+
+    //validation if username or password is blank
+    if ( !userUsername.trim() || !userPassword.trim()) {
+        alert("Please enter both username and password!");
+        return;
+    }
+
+    const existingUsers = JSON.parse(localStorage.getItem('existingUsers')) || {};
+
+    if (!existingUsers.hasOwnProperty(userUsername)) {
+        alert("Username is not registered yet!");
+        return;
+    }
+    
+    if (userPassword !== existingUsers[userUsername].password) {
+        alert("Wrong Password!");
+        return;
+    }
 
     // login
     login().then(() => {
@@ -28,8 +44,8 @@ async function login() {
     event.preventDefault();
 
     var raw = JSON.stringify({
-        "username": username,
-        "password": password
+        "username": userUsername,
+        "password": userPassword
     });
 
     var fetchRequest = {
@@ -47,9 +63,9 @@ async function login() {
         const result = await response.text();
         if (result) {
             console.log(result);
-            token = "Bearer " + result;   
-            // save user
-            saveUser(username, password, token);
+            token = "Bearer " + result;
+
+            updateToken(userUsername, token);
         } else {
             console.log("Error: Result is undefined or empty.");
         }
@@ -59,17 +75,29 @@ async function login() {
 }
 
 
-// save user
-function saveUser(username, password, token) {
-    console.log("saveuser")
-    console.log("TOKENTOKEN", token)
+// // save user
+// function saveUser(username, password, token) {
+//     console.log("saveuser")
+//     console.log("TOKENTOKEN", token)
+//     const existingUsers = JSON.parse(localStorage.getItem('existingUsers')) || {};
+
+//     existingUsers[username] = { password: password, token: token };
+
+//     localStorage.setItem('existingUsers', JSON.stringify(existingUsers));
+//     localStorage.setItem('currentUser', username);
+
+// }
+
+// update user with token
+function updateToken(username, token) {
+    console.log("updateToken")
     const existingUsers = JSON.parse(localStorage.getItem('existingUsers')) || {};
 
-    existingUsers[username] = { password: password, token: token };
+    // Update the user's entry with the token
+    existingUsers[username].token = token;
 
     localStorage.setItem('existingUsers', JSON.stringify(existingUsers));
     localStorage.setItem('currentUser', username);
-
 }
 
 

@@ -6,6 +6,15 @@ body {
     background-color: var(--bg-color);
     font-family: 'Inter', sans-serif;
     overflow: hidden;
+    height: 100vh; /* Ensure full height */
+    margin: 0; /* Remove default margin */
+    
+}
+/* Center content in .main-container */
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 /*LOGO*/
@@ -32,15 +41,16 @@ body {
     justify-content: center;
 }
 
-.login--form-box{
-    width: 380px;
-    height: 480px;
-    position: relative;
-    margin: 6% auto;
+.login--form-box {
+    width: 380px; 
+    height: 480px; 
+    position: absolute; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
     background: var(--bg-color-container);
-    padding: 5px;
+    padding: 20px; 
     box-shadow: var(--box-shadow);
-    justify-content: space-between;
 }
 
 .login--input-group{
@@ -133,10 +143,10 @@ body {
     }
 
     .login--form-box {
-        width: 100%;
-        max-width: 300px;
-        height: 600px;
-        position: relative;
+        width: 80%;
+        max-width: 300px; 
+        max-height: 95vh;
+        height: auto;
         background: var(--bg-color-container);
         padding: 20px; 
         box-shadow: var(--box-shadow);

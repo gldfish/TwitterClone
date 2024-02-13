@@ -249,6 +249,21 @@ body {
     padding: 0.5rem;
 }
 
+.follow-container {
+    /* background-color: orange; */
+}
+
+.follow-section {
+    /* background-color: magenta; */
+    height: 15rem;
+    overflow: scroll;
+}
+
+.follow-user {
+    text-decoration: none;
+    color: inherit;
+}
+
 
 
 /* -----------------MEDIA QUERIES-------------------*/

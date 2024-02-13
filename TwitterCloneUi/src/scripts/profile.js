@@ -18,6 +18,8 @@ let token = getExistingUser(localStorage.getItem('currentUser'))['token'];
 
 
 
+
+
 // main feed container
 let profilePostSection = document.querySelector('.profile--post-section');
 
@@ -27,7 +29,10 @@ function createPost(postsList) {
     
     for (let i = postsList.length - 1; i >= 0; i--) {
         const post = postsList[i];
-        console.log(post)
+
+        if (localStorage.getItem('currentUser') !== post['postedBy']) {
+            continue;
+        }
         
         // Create post content
         const postContent = document.createElement('div');
@@ -105,12 +110,6 @@ function createPost(postsList) {
 }
 
 
-
-
-
-
-
-
 // reset post
 function resetPost() {
     const postsContainer = document.querySelector('.profile--post-section');
@@ -122,8 +121,6 @@ function resetPost() {
 
 
 let userPostContent;
-
-
 
 // submit post DESKTOP BUTTON
 document.addEventListener("DOMContentLoaded", function() {
@@ -203,3 +200,49 @@ function getPost() {
 
 // on page load
 document.addEventListener("DOMContentLoaded", getPost);
+
+
+
+// get following
+function getFollowing(currUser) {
+    var requestOptions = {
+        method: 'GET',
+        headers: {
+            Authorization: token
+        },
+        redirect: 'follow'
+    };
+
+    return fetch(`http://localhost:3000/api/v1/users/${currUser}/following`, requestOptions)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.text();
+        })
+        .then(result => {
+            console.log(result)
+            return JSON.parse(result);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            throw error;
+        });
+}
+
+
+
+const followingElementMobile = document.querySelector('.mobile-profile-view strong');
+const followingElement = document.querySelector('.profile-section strong');
+
+
+
+getFollowing(localStorage.getItem('currentUser'))
+    .then(result => {
+        followingElement.textContent = result.length;
+        followingElementMobile.textContent = result.length;
+    })
+    .catch(error => {
+        
+        console.error('Error:', error);
+    });

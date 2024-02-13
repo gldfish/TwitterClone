@@ -6,6 +6,16 @@ body {
     background-color: var(--bg-color);
     font-family: 'Inter', sans-serif;
     overflow: hidden;
+    height: 100vh; /* Ensure full height */
+    margin: 0; /* Remove default margin */
+    
+}
+
+/* Center content in .main-container */
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .brand {
@@ -29,14 +39,15 @@ body {
 }
 
 .register2--form-box{
-    width: 380px;
-    height: 480px;
-    position: relative;
-    margin: 6% auto;
+    width: 380px; 
+    height: 480px; 
+    position: absolute; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
     background: var(--bg-color-container);
-    padding: 5px;
+    padding: 20px; 
     box-shadow: var(--box-shadow);
-    justify-content: space-between;
 }
 
 .register2--input-group{
@@ -82,6 +93,22 @@ body {
     text-indent: 6%;
     margin-bottom: 30px; 
 }
+
+.character-count {
+    top: 95px;
+    left: 3%;
+    font-size: 12px;
+    width: 333px;
+    color: var(--font-color-dark);
+    outline: none;
+    position: relative;
+    text-decoration: none;
+    text-align: left;
+    text-indent: 7%;
+     
+    
+}
+
 
 .register2--label-welcome {
     top: 100px;
@@ -162,10 +189,10 @@ body {
     }
 
     .register2--form-box {
-        width: 100%;
-        max-width: 300px;
-        height: 600px;
-        position: relative;
+        width: 80%;
+        max-width: 300px; 
+        max-height: 95vh;
+        height: auto;
         background: var(--bg-color-container);
         padding: 20px; 
         box-shadow: var(--box-shadow);
@@ -173,6 +200,7 @@ body {
         align-items: center;
         flex-direction: column; 
         justify-content: space-between; 
+        
     }
 
     .register2--input-group {
@@ -246,6 +274,20 @@ body {
         left: 50%;
         transform: translateX(-50%);
         margin-bottom: 50px;
+    }
+    .character-count {
+        top: 80px;
+        left: 3%;
+        font-size: 12px;
+        width: 333px;
+        color: var(--font-color-dark);
+        outline: none;
+        position: relative;
+        text-decoration: none;
+        text-align: left;
+        text-indent: 7%;
+         
+        
     }
 }
 
