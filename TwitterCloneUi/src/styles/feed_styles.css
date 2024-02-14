@@ -250,11 +250,10 @@ body {
 }
 
 .follow-container {
-    /* background-color: orange; */
+    
 }
 
 .follow-section {
-    /* background-color: magenta; */
     height: 15rem;
     overflow: scroll;
 }

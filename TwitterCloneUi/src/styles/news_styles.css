@@ -121,6 +121,15 @@ body {
     padding: 0.5rem;
 }
 
+.follow-section {
+    height: 15rem;
+    overflow: scroll;
+}
+
+.follow-user {
+    text-decoration: none;
+    color: inherit;
+}
 
 
 /* -----------------MEDIA QUERIES-------------------*/

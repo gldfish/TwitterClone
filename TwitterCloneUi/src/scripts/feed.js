@@ -178,7 +178,7 @@ function createPost(postsList) {
     
 }
 
-
+// gawa ni jett
 function likePost() {
     console.log("liek")
     console.log(this.id)
