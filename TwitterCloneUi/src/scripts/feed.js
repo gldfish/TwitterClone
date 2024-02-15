@@ -12,7 +12,6 @@ let userPostContent;
 let token = getExistingUser(localStorage.getItem('currentUser'))['token'];
 let currFollowing;
 
-
 let postTextArea = document.getElementById('postText');
 let mobileTextArea = document.getElementById('postTextMobile');
 let charCount = document.getElementById('char-count');
@@ -63,6 +62,7 @@ mobileTextArea.addEventListener("input", () => {
 
 
 
+
 // submit post DESKTOP BUTTON
 document.addEventListener("DOMContentLoaded", function() {
     var postButton = document.querySelector(".post-button");
@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function() {
            
             userPostContent = document.getElementById("postText").value;
 
-            
+            // VALIDATION 250 WORDS AND EMPTY TEXTAREA
 
             posting();
             getPost();
@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
-// submit post MOBILE BUTTON
+// submit post DESKTOP BUTTON
 document.addEventListener("DOMContentLoaded", function() {
     var postButton = document.querySelector("#mobile--post");
     if (postButton) {
@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", function() {
             
             userPostContent = document.getElementById("postTextMobile").value;
 
-            
+            // VALIDATION 250 WORDS AND EMPTY TEXTAREA
 
             posting();
             getPost();
@@ -205,7 +205,7 @@ function createPost(postsList) {
         likeButton.setAttribute('class', 'likePostBtn');
         likeButton.innerHTML = '<i class="fa-regular fa-heart"></i>Like';
         
-        //likeButton.addEventListener('click', likePostHandler);
+        likeButton.addEventListener('click', likePost)
         likeButton.setAttribute('id', postsList[i]['postId']);
         // console.log(postsList[i])
 
@@ -224,89 +224,11 @@ function createPost(postsList) {
     
 }
 
-// const likePostHandler = function(event) {
-//     const postID = this.id;
-
-//     // Get the parent container of the like button
-//     const parentPost = this.closest('.feed--post-content');
-
-//     // Find the like count element within the parent container
-//     const likeCountElement = parentPost.querySelector('.feed--like-display p');
-
-//     // Increment the like count
-//     let newLikeCount = parseInt(likeCountElement.textContent);
-//     newLikeCount++;
-
-//     // Update the like count in the UI
-//     likeCountElement.textContent = newLikeCount;
-
-//     // Update the button text to "Unlike"
-//     this.textContent = "Unlike";
-
-//     // Remove the current event listener for likePostHandler
-//     this.removeEventListener('click', likePostHandler);
-
-//     // Add an event listener for unlikePostHandler
-//     this.addEventListener('click', unlikePostHandler);
-
-//     // Send request to like the post
-//     const requestOptions = {
-//         method: 'PATCH',
-//         headers: {
-//             'Content-Type': 'application/json',
-//             Authorization: token
-//         },
-//         body: JSON.stringify({ action: "like" }),
-//         redirect: 'follow'
-//     };
-
-//     fetch(`http://localhost:3000/api/v1/posts/${postID}`, requestOptions)
-//         .then(response => response.text())
-//         .then(result => console.log(result))
-//         .catch(error => console.log('error', error));
-// }
-
-// const unlikePostHandler = function(event) {
-//     const postID = this.id;
-//     const parentPost = this.closest('.feed--post-content');
-//     const likeCountElement = parentPost.querySelector('.feed--like-display p');
-
-//     // Decrease the like count
-//     let newLikeCount = parseInt(likeCountElement.textContent);
-//     newLikeCount--;
-
-//     // Update the like count in the UI
-//     likeCountElement.textContent = newLikeCount;
-
-//     // Update the button text to "Like"
-//     this.textContent = "Like";
-
-//     // Remove the current event listener for unlikePostHandler
-//     this.removeEventListener('click', unlikePostHandler);
-
-//     // Add an event listener for likePostHandler
-//     this.addEventListener('click', likePostHandler);
-
-//     // Send request to unlike the post
-//     const requestOptions = {
-//         method: 'PATCH',
-//         headers: {
-//             'Content-Type': 'application/json',
-//             Authorization: token
-//         },
-//         body: JSON.stringify({ action: "unlike" }),
-//         redirect: 'follow'
-//     };
-
-//     fetch(`http://localhost:3000/api/v1/posts/${postID}`, requestOptions)
-//         .then(response => response.text())
-//         .then(result => console.log(result))
-//         .catch(error => console.log('error', error));
-// }
-
-
-
-
+// gawa ni jett
+function likePost() {
+    console.log("liek")
+    console.log(this.id)
+}
 
 
 // reset post
