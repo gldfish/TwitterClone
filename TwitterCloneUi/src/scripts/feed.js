@@ -13,10 +13,56 @@ let token = getExistingUser(localStorage.getItem('currentUser'))['token'];
 let currFollowing;
 
 
+let postTextArea = document.getElementById('postText');
+let mobileTextArea = document.getElementById('postTextMobile');
+let charCount = document.getElementById('char-count');
+let mobileCount = document.getElementById('mobile-char-count');
+
+
+
+
 
 
 
 // posting back end
+
+// post length validation (DESKTOP)
+postTextArea.addEventListener("input", () => {
+    const maxLength = 280;
+    const currentLength = postTextArea.value.length;
+    charCount.textContent = currentLength;
+
+    // Check if the current length exceeds the maximum length
+    if (currentLength > maxLength) {
+        alert("Post length should not exceed 280 characters.");
+        // Truncate the text to the maximum length
+        postTextArea.value = postTextArea.value.substring(0, maxLength);
+        // Update the character count display
+        charCount.textContent = maxLength;
+    }
+});
+
+
+// post length validation (MOBILE)
+mobileTextArea.addEventListener("input", () => {
+    const maxLength = 280;
+    const currentLength = mobileTextArea.value.length;
+    mobileCount.textContent = currentLength;
+
+    // Check if the current length exceeds the maximum length
+    if (currentLength > maxLength) {
+        alert("Post length should not exceed 280 characters.");
+        // Truncate the text to the maximum length
+        mobileTextArea.value = mobileTextArea.value.substring(0, maxLength);
+        // Update the character count display
+        mobileCount.textContent = maxLength;
+    }
+});
+
+
+
+
+
 // submit post DESKTOP BUTTON
 document.addEventListener("DOMContentLoaded", function() {
     var postButton = document.querySelector(".post-button");
@@ -26,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function() {
            
             userPostContent = document.getElementById("postText").value;
 
-            // VALIDATION 250 WORDS AND EMPTY TEXTAREA
+            
 
             posting();
             getPost();
@@ -35,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
-// submit post DESKTOP BUTTON
+// submit post MOBILE BUTTON
 document.addEventListener("DOMContentLoaded", function() {
     var postButton = document.querySelector("#mobile--post");
     if (postButton) {
@@ -44,7 +90,7 @@ document.addEventListener("DOMContentLoaded", function() {
             
             userPostContent = document.getElementById("postTextMobile").value;
 
-            // VALIDATION 250 WORDS AND EMPTY TEXTAREA
+            
 
             posting();
             getPost();
@@ -159,7 +205,7 @@ function createPost(postsList) {
         likeButton.setAttribute('class', 'likePostBtn');
         likeButton.innerHTML = '<i class="fa-regular fa-heart"></i>Like';
         
-        likeButton.addEventListener('click', likePost)
+        //likeButton.addEventListener('click', likePostHandler);
         likeButton.setAttribute('id', postsList[i]['postId']);
         // console.log(postsList[i])
 
@@ -178,11 +224,89 @@ function createPost(postsList) {
     
 }
 
-// gawa ni jett
-function likePost() {
-    console.log("liek")
-    console.log(this.id)
-}
+// const likePostHandler = function(event) {
+//     const postID = this.id;
+
+//     // Get the parent container of the like button
+//     const parentPost = this.closest('.feed--post-content');
+
+//     // Find the like count element within the parent container
+//     const likeCountElement = parentPost.querySelector('.feed--like-display p');
+
+//     // Increment the like count
+//     let newLikeCount = parseInt(likeCountElement.textContent);
+//     newLikeCount++;
+
+//     // Update the like count in the UI
+//     likeCountElement.textContent = newLikeCount;
+
+//     // Update the button text to "Unlike"
+//     this.textContent = "Unlike";
+
+//     // Remove the current event listener for likePostHandler
+//     this.removeEventListener('click', likePostHandler);
+
+//     // Add an event listener for unlikePostHandler
+//     this.addEventListener('click', unlikePostHandler);
+
+//     // Send request to like the post
+//     const requestOptions = {
+//         method: 'PATCH',
+//         headers: {
+//             'Content-Type': 'application/json',
+//             Authorization: token
+//         },
+//         body: JSON.stringify({ action: "like" }),
+//         redirect: 'follow'
+//     };
+
+//     fetch(`http://localhost:3000/api/v1/posts/${postID}`, requestOptions)
+//         .then(response => response.text())
+//         .then(result => console.log(result))
+//         .catch(error => console.log('error', error));
+// }
+
+// const unlikePostHandler = function(event) {
+//     const postID = this.id;
+//     const parentPost = this.closest('.feed--post-content');
+//     const likeCountElement = parentPost.querySelector('.feed--like-display p');
+
+//     // Decrease the like count
+//     let newLikeCount = parseInt(likeCountElement.textContent);
+//     newLikeCount--;
+
+//     // Update the like count in the UI
+//     likeCountElement.textContent = newLikeCount;
+
+//     // Update the button text to "Like"
+//     this.textContent = "Like";
+
+//     // Remove the current event listener for unlikePostHandler
+//     this.removeEventListener('click', unlikePostHandler);
+
+//     // Add an event listener for likePostHandler
+//     this.addEventListener('click', likePostHandler);
+
+//     // Send request to unlike the post
+//     const requestOptions = {
+//         method: 'PATCH',
+//         headers: {
+//             'Content-Type': 'application/json',
+//             Authorization: token
+//         },
+//         body: JSON.stringify({ action: "unlike" }),
+//         redirect: 'follow'
+//     };
+
+//     fetch(`http://localhost:3000/api/v1/posts/${postID}`, requestOptions)
+//         .then(response => response.text())
+//         .then(result => console.log(result))
+//         .catch(error => console.log('error', error));
+// }
+
+
+
+
 
 
 // reset post

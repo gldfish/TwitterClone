@@ -49,6 +49,17 @@ body {
     padding-left: 0.5rem;
 }
 
+.char-count {
+    position: absolute;
+    bottom: 1rem; 
+    left: 1rem; 
+    font-size: 0.60rem;
+    color: var(--bg-color-btn);
+    font-family: 'Inter', sans-serif;
+
+}
+
+
 .post-area::placeholder {
     padding-right: 0.5rem;
     padding-top: 0.5rem;
@@ -265,6 +276,7 @@ body {
 
 
 
+
 /* -----------------MEDIA QUERIES-------------------*/
 
 /*--------FOR PHONES---------*/
@@ -291,12 +303,17 @@ body {
     .feed-right-container {
         display: none;
     }
+    .mobile-char-count {
+        position: absolute;
+        bottom: 1.5rem;
+        left: 1.5rem; 
+        font-size: 0.60rem;
+        color: var(--bg-color-btn);
+        font-family: 'Inter', sans-serif;
+    
+    }
+    
 
 }
 
-
-
-.sample-sample {
-    display: none;
-}
 
