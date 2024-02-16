@@ -10,7 +10,6 @@ updateProfile('.mobile--profile-name', '.mobile--profile-handler', '.mobile--pro
 
 let userPostContent;
 let token = getExistingUser(localStorage.getItem('currentUser'))['token'];
-let currFollowing;
 
 let postTextArea = document.getElementById('postText');
 let mobileTextArea = document.getElementById('postTextMobile');
@@ -19,24 +18,16 @@ let mobileCount = document.getElementById('mobile-char-count');
 
 
 
-
-
-
-
-// posting back end
-
 // post length validation (DESKTOP)
 postTextArea.addEventListener("input", () => {
     const maxLength = 280;
     const currentLength = postTextArea.value.length;
     charCount.textContent = currentLength;
 
-    // Check if the current length exceeds the maximum length
+    
     if (currentLength > maxLength) {
         alert("Post length should not exceed 280 characters.");
-        // Truncate the text to the maximum length
         postTextArea.value = postTextArea.value.substring(0, maxLength);
-        // Update the character count display
         charCount.textContent = maxLength;
     }
 });
@@ -48,12 +39,10 @@ mobileTextArea.addEventListener("input", () => {
     const currentLength = mobileTextArea.value.length;
     mobileCount.textContent = currentLength;
 
-    // Check if the current length exceeds the maximum length
+    
     if (currentLength > maxLength) {
         alert("Post length should not exceed 280 characters.");
-        // Truncate the text to the maximum length
         mobileTextArea.value = mobileTextArea.value.substring(0, maxLength);
-        // Update the character count display
         mobileCount.textContent = maxLength;
     }
 });
@@ -69,10 +58,8 @@ document.addEventListener("DOMContentLoaded", function() {
     if (postButton) {
         postButton.addEventListener("click", function(event) {
             event.preventDefault();
-           
             userPostContent = document.getElementById("postText").value;
 
-            // VALIDATION 250 WORDS AND EMPTY TEXTAREA
 
             posting();
             getPost();
@@ -81,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
-// submit post DESKTOP BUTTON
+// submit post MOBILE BUTTON
 document.addEventListener("DOMContentLoaded", function() {
     var postButton = document.querySelector("#mobile--post");
     if (postButton) {
@@ -90,8 +77,6 @@ document.addEventListener("DOMContentLoaded", function() {
             
             userPostContent = document.getElementById("postTextMobile").value;
 
-            // VALIDATION 250 WORDS AND EMPTY TEXTAREA
-
             posting();
             getPost();
         });
@@ -101,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
-// post back end
+// posting back end
 function posting() {
      // body for header
      var raw = JSON.stringify({
@@ -165,12 +150,9 @@ function createPost(postsList) {
         userFullNameHandle.appendChild(userFullName);
         userFullNameHandle.appendChild(userHandle);
 
-        // const postTime = document.createElement('p');
-        // postTime.setAttribute('class', 'feed--time');
-        // postTime.textContent = '45 mins ago.';
-
+        
         userInfo.appendChild(userFullNameHandle);
-        //userInfo.appendChild(postTime);
+        
 
         userInfoPost.appendChild(userImage);
         userInfoPost.appendChild(userInfo);
@@ -206,7 +188,7 @@ function createPost(postsList) {
         likeButton.setAttribute('class', 'likePostBtn');
 
         if (postsList[i]['likes'].includes(localStorage.getItem('currentUser'))) {
-            likeButton.innerHTML = 'Unlike';
+            likeButton.innerHTML = '<i class="fa-solid fa-heart-crack"></i>Unlike';
             likeButton.addEventListener('click', unlikePost)
 
         }
@@ -219,7 +201,7 @@ function createPost(postsList) {
         
         
         likeButton.setAttribute('id', postsList[i]['postId']);
-        // console.log(postsList[i])
+        
 
 
         interactionPost.appendChild(likeDisplay);
@@ -236,10 +218,9 @@ function createPost(postsList) {
     
 }
 
-// gawa ni jett
+// LIKE FUNCTION
 const likePost = function(event){
     const parentDiv = event.target.parentNode;
-    console.log(this.id)
     const postID = this.id;
 
     const likeCountElement = parentDiv.querySelector('.likeCount');
@@ -250,7 +231,7 @@ const likePost = function(event){
     //likeCountElement.textContent = newLikeCount;
 
     const likeBtn = parentDiv.querySelector('.likePostBtn');
-    likeBtn.textContent = "Unlike"
+    likeBtn.innerHTML = '<i class="fa-solid fa-heart-crack"></i>Unlike'
     likeBtn.removeEventListener('click', likePost)
 
     var raw = JSON.stringify({
@@ -275,8 +256,9 @@ const likePost = function(event){
     likeBtn.addEventListener('click', unlikePost)
 }
 
+//UNLIKE FUNCTION
 const unlikePost = function(event) {
-    console.log('unlike');
+    
     const parentDiv = event.target.parentNode;
     
     const postID = this.id;
@@ -286,10 +268,9 @@ const unlikePost = function(event) {
     let newLikeCount = parseInt(likeCountElement.textContent);
     newLikeCount--;
 
-    //likeCountElement.textContent = newLikeCount;
 
     const likeBtn = parentDiv.querySelector('.likePostBtn');
-    likeBtn.textContent = "Unlike"
+    likeBtn.innerHTML = '<i class="fa-solid fa-heart-crack"></i>Unlike'
 
     likeBtn.removeEventListener('click', unlikePost)
 
@@ -353,9 +334,6 @@ function getPost() {
 document.addEventListener("DOMContentLoaded", getPost);
 
 
-
-
-
 // get users
 function getUsers(currFollowing) {
     var fetchRequest = {
@@ -371,7 +349,6 @@ function getUsers(currFollowing) {
     .then(response => response.json())
     .then(result => {
         
-        //console.log("USERS", result);
 
         createProfileSide(result, currFollowing)
 
@@ -394,7 +371,7 @@ function getFollowing(currUser) {
     return fetch(`http://localhost:3000/api/v1/users/${currUser}/following`, requestOptions)
         .then(response => response.text())
         .then(result => {
-            //console.log("FOLLOWINGG", result);
+            
             return JSON.parse(result);
         })
         .catch(error => {
@@ -469,13 +446,11 @@ function createProfileSide(usersList, currFollowing) {
 
 // view profile 
 function viewUserProfile() {
-    console.log(this.id)
-    //console.log(localStorage.getItem('userBio'))
 
     const userBioJSON = localStorage.getItem('userBio');
     const userBioObject = JSON.parse(userBioJSON);
     const userBio = userBioObject[this.id].bio;
-    console.log(userBio);
+    
 
     const viewProfile = {
         "bio": userBio,
@@ -501,7 +476,7 @@ function clickFollowHandler() {
 }
 
 
-// sample unfollow func
+// unfollow func
 function clickUnfollowHandler() {
     const userToUnfollow = this.id;
     const currUser = localStorage.getItem('currentUser');
@@ -551,4 +526,5 @@ function unfollow(currUser, userToUnfollow) {
     .catch(error => console.log('error', error));
 }
 
+//interval for refresh
 setInterval(getPost, 1000);

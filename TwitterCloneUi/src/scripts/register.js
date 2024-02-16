@@ -7,6 +7,13 @@ document.getElementById('nextButton').addEventListener('click', function() {
     // Get existing users from localStorage
     const existingUsers = JSON.parse(localStorage.getItem('existingUsers')) || {};
 
+    // check if username input is blank
+    if (!newUsername.trim()){
+        alert("Username can't be blank!");
+        return;
+    }
+
+
     // Check if the username already exists
     if (existingUsers.hasOwnProperty(newUsername)) {
         alert('Username is already registered. Please choose a different one.');
@@ -15,6 +22,10 @@ document.getElementById('nextButton').addEventListener('click', function() {
         localStorage.setItem('newUsername', newUsername);
         window.location.href = 'register2.html';
     }
+
+    
+
+
 });
 
 

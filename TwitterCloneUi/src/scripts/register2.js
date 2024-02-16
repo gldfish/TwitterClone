@@ -14,17 +14,15 @@ bioTextArea.addEventListener("input", () => {
     const currentLength = bioTextArea.value.length;
     charCount.textContent = currentLength;
 
-    // Check if the current length exceeds the maximum length
+    
     if (currentLength > maxLength) {
         alert("Bio length should not exceed 50 characters.");
-        // Truncate the text to the maximum length
+        
         bioTextArea.value = bioTextArea.value.substring(0, maxLength);
-        // Update the character count display
+        
         charCount.textContent = maxLength;
     }
 });
-
-
 
 
 
@@ -81,11 +79,6 @@ function registerNewUser() {
             console.log(result);
             // After successful registration, save user
             saveUser(newUsername, finalPassword);
-
-            // Proceed with other actions
-
-            
-
             window.location.href = 'index.html';
         })
         .catch(error => console.log('error', error)

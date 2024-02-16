@@ -10,7 +10,7 @@ export function updateProfile(usernameSelector, handleSelector, bioSelector) {
     userBioElem.textContent = retrieveBio(currentUser);
 }
 
-// retrive bio
+// retrieve bio
 function retrieveBio(username) {
     const userBio = JSON.parse(localStorage.getItem('userBio')) || {};
 
@@ -21,7 +21,7 @@ function retrieveBio(username) {
 export function getExistingUser(username) {
     const existingUsers = JSON.parse(localStorage.getItem('existingUsers')) || {};
 
-    //console.log(existingUsers, "USERS");
+    
 
     return existingUsers[username];
 }
@@ -29,6 +29,6 @@ export function getExistingUser(username) {
 // sort posts
 export function sortPostsByDateTime(posts) {
     return posts.sort((a, b) => {
-      return new Date(a.dateTimePosted) - new Date(b.dateTimePosted);
+        return new Date(a.dateTimePosted) - new Date(b.dateTimePosted);
     });
 }

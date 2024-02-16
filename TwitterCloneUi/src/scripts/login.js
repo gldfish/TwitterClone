@@ -75,19 +75,6 @@ async function login() {
 }
 
 
-// // save user
-// function saveUser(username, password, token) {
-//     console.log("saveuser")
-//     console.log("TOKENTOKEN", token)
-//     const existingUsers = JSON.parse(localStorage.getItem('existingUsers')) || {};
-
-//     existingUsers[username] = { password: password, token: token };
-
-//     localStorage.setItem('existingUsers', JSON.stringify(existingUsers));
-//     localStorage.setItem('currentUser', username);
-
-// }
-
 // update user with token
 function updateToken(username, token) {
     console.log("updateToken")
@@ -99,12 +86,3 @@ function updateToken(username, token) {
     localStorage.setItem('existingUsers', JSON.stringify(existingUsers));
     localStorage.setItem('currentUser', username);
 }
-
-
-// function getExistingUser(username) {
-//     const existingUsers = JSON.parse(localStorage.getItem('existingUsers')) || {};
-
-//     // console.log(existingUsers);
-
-//     return existingUsers[username];
-// }

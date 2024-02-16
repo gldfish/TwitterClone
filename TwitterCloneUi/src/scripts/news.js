@@ -31,12 +31,6 @@ function DisplayNews(newsColl) {
 
     for (var news of newsColl) {
 
-        // if (news['description'].length > 125 || news['description'].length <= 10 || news['author'] == null || news['author'].length > 15) {
-        //     continue;
-        // } 
-
-        // console.log(news)
-
         // container
         const newNewsPostCont = document.createElement('div');
         newNewsPostCont.setAttribute('class', 'news--item');
@@ -65,18 +59,6 @@ function DisplayNews(newsColl) {
         textinfo_1.appendChild(dateInfo);
 
 
-        // source
-        // const sourceInfo = document.createElement('div');
-        // sourceInfo.setAttribute('class', 'content-source')
-
-        
-        // const sourceTxt = document.createTextNode(`Source: ${news['source']['name']}`);
-        // sourceInfo.appendChild(sourceTxt);
-
-
-        // textinfo_1.appendChild(sourceInfo);
-
-
 
         // text content container
         const newTextContent = document.createElement('div');
@@ -90,7 +72,6 @@ function DisplayNews(newsColl) {
         title.appendChild(titleTxt);
 
         newTextContent.appendChild(title);
-
 
 
         // body
@@ -108,15 +89,6 @@ function DisplayNews(newsColl) {
         const newTextAdd = document.createElement('div');
         newTextAdd.setAttribute('class', 'text-information-add');
 
-        // author
-
-        // const author = document.createElement('div');
-        // author.setAttribute('class', 'content-author');
-
-        // const authorTxt = document.createTextNode(`Author: ${news['author']}`);
-        // author.appendChild(authorTxt);
-
-        // newTextAdd.appendChild(author);
 
         const sourceInfo = document.createElement('div');
         sourceInfo.setAttribute('class', 'content-author')
@@ -157,7 +129,6 @@ function DisplayNews(newsColl) {
 
         newNewsPostCont.appendChild(image);
         newNewsPostCont.appendChild(newTextContainer);
-   
 
         newsContainer.appendChild(newNewsPostCont);
         
