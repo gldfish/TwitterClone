@@ -32,7 +32,7 @@ function getFollowing(currUser) {
     };
 
     
-    return fetch(`http://localhost:3000/api/v1/users/${currUser}/following`, requestOptions)
+    return fetch(`/api/v1/users/${currUser}/following`, requestOptions)
         .then(response => response.text())
         .then(result => {
     
@@ -57,7 +57,7 @@ function getUsers(currFollowing) {
     };
 
     // fetch
-    fetch("http://localhost:3000/api/v1/users/", fetchRequest)
+    fetch("/api/v1/users/", fetchRequest)
     .then(response => response.json())
     .then(result => {
 
@@ -179,7 +179,7 @@ function follow(currUser, userToFollow) {
     };
 
 
-    fetch(`http://localhost:3000/api/v1/users/${currUser}/following/${userToFollow}`, requestOptions)
+    fetch(`/api/v1/users/${currUser}/following/${userToFollow}`, requestOptions)
     .then(response => response.text())
     .then(result => console.log(result))
     .catch(error => console.log('error', error));
@@ -196,7 +196,7 @@ function unfollow(currUser, userToUnfollow) {
         redirect: 'follow'
     };
     
-    fetch(`http://localhost:3000/api/v1/users/${currUser}/following/${userToUnfollow}`, requestOptions)
+    fetch(`/api/v1/users/${currUser}/following/${userToUnfollow}`, requestOptions)
     .then(response => response.text())
     .then(result => console.log(result))
     .catch(error => console.log('error', error));

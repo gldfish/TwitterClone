@@ -73,7 +73,7 @@ function registerNewUser() {
     };
 
     // fetch
-    fetch("http://localhost:3000/api/v1/auth/register", fetchRequest)
+    fetch("/api/v1/auth/register", fetchRequest)
         .then(response => response.text())
         .then(result => {
             console.log(result);

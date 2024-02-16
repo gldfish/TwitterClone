@@ -59,7 +59,7 @@ async function login() {
 
     try {
         // fetch
-        const response = await fetch("http://localhost:3000/api/v1/auth/login", fetchRequest);
+        const response = await fetch("/api/v1/auth/login", fetchRequest);
         const result = await response.text();
         if (result) {
             console.log(result);
@@ -86,3 +86,4 @@ function updateToken(username, token) {
     localStorage.setItem('existingUsers', JSON.stringify(existingUsers));
     localStorage.setItem('currentUser', username);
 }
+

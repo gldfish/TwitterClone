@@ -107,7 +107,7 @@ function follow(currUser, userToFollow) {
     };
 
 
-    fetch(`http://localhost:3000/api/v1/users/${currUser}/following/${userToFollow}`, requestOptions)
+    fetch(`/api/v1/users/${currUser}/following/${userToFollow}`, requestOptions)
     .then(response => response.text())
     .then(result => console.log(result))
     .catch(error => console.log('error', error));
@@ -124,7 +124,7 @@ function unfollow(currUser, userToUnfollow) {
     };
     
 
-    fetch(`http://localhost:3000/api/v1/users/${currUser}/following/${userToUnfollow}`, requestOptions)
+    fetch(`/api/v1/users/${currUser}/following/${userToUnfollow}`, requestOptions)
     .then(response => response.text())
     .then(result => console.log(result))
     .catch(error => console.log('error', error));
@@ -141,7 +141,7 @@ function getFollowing(currUser) {
         redirect: 'follow'
     };
 
-    return fetch(`http://localhost:3000/api/v1/users/${currUser}/following`, requestOptions)
+    return fetch(`/api/v1/users/${currUser}/following`, requestOptions)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -328,7 +328,7 @@ const likePost = function(event){
         redirect: 'follow'
     };
 
-    fetch(`http://localhost:3000/api/v1/posts/${postID}`, requestOptions)
+    fetch(`/api/v1/posts/${postID}`, requestOptions)
     .then(response => response.text())
     .then(result => console.log(result))
     .catch(error => console.log('error', error));
@@ -368,7 +368,7 @@ const unlikePost = function(event) {
         redirect: 'follow'
     };
 
-    fetch(`http://localhost:3000/api/v1/posts/${postID}`, requestOptions)
+    fetch(`/api/v1/posts/${postID}`, requestOptions)
     .then(response => response.text())
     .then(result => console.log(result))
     .catch(error => console.log('error', error));
@@ -394,7 +394,7 @@ function getSpecificPost() {
 
 
     // fetch
-    fetch(`http://localhost:3000/api/v1/posts?username=${user}`, fetchRequest)
+    fetch(`/api/v1/posts?username=${user}`, fetchRequest)
     .then(response => response.json())
     .then(result => {
 

@@ -170,7 +170,7 @@ const likePost = function(event){
         redirect: 'follow'
     };
   
-    fetch(`http://localhost:3000/api/v1/posts/${postID}`, requestOptions)
+    fetch(`/api/v1/posts/${postID}`, requestOptions)
     .then(response => response.text())
     .then(result => console.log(result))
     .catch(error => console.log('error', error));
@@ -209,7 +209,7 @@ const unlikePost = function(event) {
         redirect: 'follow'
     };
 
-    fetch(`http://localhost:3000/api/v1/posts/${postID}`, requestOptions)
+    fetch(`/api/v1/posts/${postID}`, requestOptions)
     .then(response => response.text())
     .then(result => console.log(result))
     .catch(error => console.log('error', error));
@@ -269,7 +269,7 @@ function posting() {
    };
 
    // fetch
-   fetch("http://localhost:3000/api/v1/posts", fetchRequest)
+   fetch("/api/v1/posts", fetchRequest)
    .then(response => response.text())
    .then(result => console.log(result))
    .catch(error => console.log('error', error));
@@ -290,7 +290,7 @@ function getPost() {
     };
 
     // fetch
-    fetch("http://localhost:3000/api/v1/posts", fetchRequest)
+    fetch("/api/v1/posts", fetchRequest)
     .then(response => response.json())
     .then(result => {
         
@@ -316,7 +316,7 @@ function getFollowing(currUser) {
         redirect: 'follow'
     };
 
-    return fetch(`http://localhost:3000/api/v1/users/${currUser}/following`, requestOptions)
+    return fetch(`/api/v1/users/${currUser}/following`, requestOptions)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
