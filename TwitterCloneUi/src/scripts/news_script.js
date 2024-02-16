@@ -35,7 +35,7 @@ function getFollowing(currUser) {
     return fetch(`http://localhost:3000/api/v1/users/${currUser}/following`, requestOptions)
         .then(response => response.text())
         .then(result => {
-            //console.log("FOLLOWINGG", result);
+    
             return JSON.parse(result);
         })
         .catch(error => {
@@ -60,8 +60,6 @@ function getUsers(currFollowing) {
     fetch("http://localhost:3000/api/v1/users/", fetchRequest)
     .then(response => response.json())
     .then(result => {
-        
-        //console.log("USERS", result);
 
         createProfileSide(result, currFollowing)
 
@@ -124,13 +122,11 @@ function createProfileSide(usersList, currFollowing) {
 
 // view profile 
 function viewUserProfile() {
-    console.log(this.id)
-    //console.log(localStorage.getItem('userBio'))
 
     const userBioJSON = localStorage.getItem('userBio');
     const userBioObject = JSON.parse(userBioJSON);
     const userBio = userBioObject[this.id].bio;
-    console.log(userBio);
+    
 
     const viewProfile = {
         "bio": userBio,

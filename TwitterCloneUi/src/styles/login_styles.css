@@ -35,7 +35,7 @@ body {
     font-size: 30px;
     font-weight: bolder;
     color: var(--font-color-dark);
-    left: 100px;
+    left: 5rem;
     position: relative;
     align-items: center;
     justify-content: center;
@@ -77,28 +77,21 @@ body {
 }
 
 
-.login--button-box{
+
+.toggle-btn{
     width: 333px;
     background-color: var(--bg-color-btn);
     border-radius: 6px;
     outline: none;
     margin: 240px auto;
     text-decoration: none;
-    border: none;
-    margin: 210px auto;
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.toggle-btn{
     padding: 10px 30px;
-    cursor: pointer;
     border: 0;
-    outline: none;
     color: var(--font-color-light);
-    background: transparent;
     position: relative;
 }
 

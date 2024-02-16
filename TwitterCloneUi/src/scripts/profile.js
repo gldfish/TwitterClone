@@ -18,13 +18,11 @@ let token = getExistingUser(localStorage.getItem('currentUser'))['token'];
 
 
 
-
-
 // main feed container
 let profilePostSection = document.querySelector('.profile--post-section');
 
 
-// post validation
+// post validation (Character Count)
 
 let charCount = document.getElementById('char-count');
 let postTextArea = document.getElementById('postTextarea');
@@ -34,12 +32,12 @@ postTextArea.addEventListener("input", () => {
     const currentLength = postTextArea.value.length;
     charCount.textContent = currentLength;
 
-    // Check if the current length exceeds the maximum length
+    
     if (currentLength > maxLength) {
         alert("Post length should not exceed 280 characters.");
-        // Truncate the text to the maximum length
+        
         postTextArea.value = postTextArea.value.substring(0, maxLength);
-        // Update the character count display
+        
         charCount.textContent = maxLength;
     }
 });
@@ -88,12 +86,6 @@ function createPost(postsList) {
         userInfoContainer.appendChild(userName);
         userInfoContainer.appendChild(userHandle);
         userInfo.appendChild(userInfoContainer);
-
-        // const postTime = document.createElement('p');
-        // postTime.classList.add('profile--time');
-        // postTime.textContent = post.postTime;
-
-        // userInfo.appendChild(postTime);
         postUser.appendChild(userImage);
         postUser.appendChild(userInfo);
 
@@ -126,7 +118,7 @@ function createPost(postsList) {
 
 
         if (postsList[i]['likes'].includes(localStorage.getItem('currentUser'))) {
-            likeButton.innerHTML = 'Unlike';
+            likeButton.innerHTML = '<i class="fa-solid fa-heart-crack"></i>Unlike';
             likeButton.addEventListener('click', unlikePost)
 
         }
@@ -139,7 +131,7 @@ function createPost(postsList) {
         
         
         likeButton.setAttribute('id', postsList[i]['postId']);
-        // console.log(postsList[i])
+        
 
         postInteraction.appendChild(likeDisplay);
         postInteraction.appendChild(likeButton);
@@ -154,9 +146,10 @@ function createPost(postsList) {
     }
 }
 
+
+//LIKE FUNCTIONALITY
 const likePost = function(event){
     const parentDiv = event.target.parentNode;
-    console.log(this.id)
     const postID = this.id;
 
     const likeCountElement = parentDiv.querySelector('.likeCount');
@@ -164,10 +157,9 @@ const likePost = function(event){
     let newLikeCount = parseInt(likeCountElement.textContent);
     newLikeCount++;
 
-    //likeCountElement.textContent = newLikeCount;
 
     const likeBtn = parentDiv.querySelector('.likePostBtn');
-    likeBtn.textContent = "Unlike"
+    likeBtn.innerHTML = '<i class="fa-solid fa-heart-crack"></i>Unlike'
     likeBtn.removeEventListener('click', likePost)
 
     var raw = JSON.stringify({
@@ -193,7 +185,7 @@ const likePost = function(event){
 }
 
 const unlikePost = function(event) {
-    console.log('unlike');
+    
     const parentDiv = event.target.parentNode;
     
     const postID = this.id;
@@ -203,10 +195,9 @@ const unlikePost = function(event) {
     let newLikeCount = parseInt(likeCountElement.textContent);
     newLikeCount--;
 
-    //likeCountElement.textContent = newLikeCount;
 
     const likeBtn = parentDiv.querySelector('.likePostBtn');
-    likeBtn.textContent = "Unlike"
+    likeBtn.innerHTML = '<i class="fa-solid fa-heart-crack"></i>Unlike'
 
     likeBtn.removeEventListener('click', unlikePost)
 
@@ -256,8 +247,6 @@ document.addEventListener("DOMContentLoaded", function() {
             userPostContent = document.getElementById("postTextarea").value;
 
             console.log(userPostContent)
-
-            // VALIDATION 250 WORDS AND EMPTY TEXTAREA
 
             posting();
             getPost();
@@ -311,9 +300,6 @@ function getPost() {
     .then(response => response.json())
     .then(result => {
         
-        console.log("result", result);
-
-        console.log()
 
         createPost(result);
 
@@ -344,7 +330,7 @@ function getFollowing(currUser) {
             return response.text();
         })
         .then(result => {
-            console.log(result)
+            
             return JSON.parse(result);
         })
         .catch(error => {
@@ -353,11 +339,8 @@ function getFollowing(currUser) {
         });
 }
 
-
-
 const followingElementMobile = document.querySelector('.mobile-profile-view strong');
 const followingElement = document.querySelector('.profile-section strong');
-
 
 
 getFollowing(localStorage.getItem('currentUser'))
@@ -370,5 +353,5 @@ getFollowing(localStorage.getItem('currentUser'))
         console.error('Error:', error);
     });
 
-
+//interval for refresh
 setInterval(getPost, 1000)

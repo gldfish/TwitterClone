@@ -1,6 +1,3 @@
-
-
-
 import { getExistingUser } from './common_exports.js';
 
 
@@ -59,12 +56,12 @@ var followButton = document.querySelector('button');
 
 function getIsCurrFollowing(userFollowing) {
     if (userFollowing.includes(user)) {
-        console.log("following")
+        
         followButton.textContent = "Unfollow";
         followButton.addEventListener('click', clickUnfollowHandler)
 
     } else {
-        console.log("not following")
+        
         followButton.textContent = "Follow";
         followButton.addEventListener('click', clickFollowHandler)
     }
@@ -76,7 +73,7 @@ function clickFollowHandler() {
     
     follow(currUserViewer, user);
 
-    console.log(user)
+    
 
     this.textContent = 'Unfollow';
 
@@ -90,7 +87,7 @@ function clickUnfollowHandler() {
  
     unfollow(currUserViewer, user);
 
-    console.log(user)
+    
 
     this.textContent = 'Follow';
 
@@ -171,10 +168,10 @@ const followingElementMobile = document.querySelector('.mobile-profile-view stro
 
 getFollowing(user)
 .then(result => {
-    console.log("getfollowog", result)
+    
     followingElementMobile.textContent = result.length;
     followingElement.textContent = result.length;
-    // getIsCurrFollowing(result);
+    
 })
 .catch(error => {
     
@@ -207,7 +204,6 @@ function createPost(postsList) {
     
         const post = postsList[i];
 
-
         
         // Create post content
         const postContent = document.createElement('div');
@@ -238,9 +234,6 @@ function createPost(postsList) {
         userInfoContainer.appendChild(userHandle);
         userInfo.appendChild(userInfoContainer);
 
-        // const postTime = document.createElement('p');
-        // postTime.classList.add('profile--time');
-        // postTime.textContent = post.postTime;
 
         // userInfo.appendChild(postTime);
         postUser.appendChild(userImage);
@@ -275,7 +268,7 @@ function createPost(postsList) {
         likeButton.setAttribute('class', 'likePostBtn');
 
         if (postsList[i]['likes'].includes(localStorage.getItem('currentUser'))) {
-            likeButton.innerHTML = 'Unlike';
+            likeButton.innerHTML = '<i class="fa-solid fa-heart-crack"></i>Unlike';
             likeButton.addEventListener('click', unlikePost)
 
         }
@@ -285,10 +278,8 @@ function createPost(postsList) {
         }
 
         
-        
-        
         likeButton.setAttribute('id', postsList[i]['postId']);
-        // console.log(postsList[i])
+        
 
         postInteraction.appendChild(likeDisplay);
         postInteraction.appendChild(likeButton);
@@ -305,9 +296,11 @@ function createPost(postsList) {
 
 
 }
+
+//LIKE FUNCTIONALITY
 const likePost = function(event){
     const parentDiv = event.target.parentNode;
-    console.log(this.id)
+    
     const postID = this.id;
 
     const likeCountElement = parentDiv.querySelector('.likeCount');
@@ -315,16 +308,16 @@ const likePost = function(event){
     let newLikeCount = parseInt(likeCountElement.textContent);
     newLikeCount++;
 
-    //likeCountElement.textContent = newLikeCount;
+    
 
     const likeBtn = parentDiv.querySelector('.likePostBtn');
-    likeBtn.textContent = "Unlike"
+    likeBtn.innerHTML = '<i class="fa-solid fa-heart-crack"></i>Unlike'
     likeBtn.removeEventListener('click', likePost)
 
     var raw = JSON.stringify({
         "action": "like"
     });
-  
+
     var requestOptions = {
         method: 'PATCH',
         headers: {
@@ -334,7 +327,7 @@ const likePost = function(event){
         body: raw,
         redirect: 'follow'
     };
-  
+
     fetch(`http://localhost:3000/api/v1/posts/${postID}`, requestOptions)
     .then(response => response.text())
     .then(result => console.log(result))
@@ -344,7 +337,7 @@ const likePost = function(event){
 }
 
 const unlikePost = function(event) {
-    console.log('unlike');
+    
     const parentDiv = event.target.parentNode;
     
     const postID = this.id;
@@ -354,10 +347,10 @@ const unlikePost = function(event) {
     let newLikeCount = parseInt(likeCountElement.textContent);
     newLikeCount--;
 
-    //likeCountElement.textContent = newLikeCount;
+    
 
     const likeBtn = parentDiv.querySelector('.likePostBtn');
-    likeBtn.textContent = "Unlike"
+    likeBtn.innerHTML = '<i class="fa-solid fa-heart-crack"></i>Unlike'
 
     likeBtn.removeEventListener('click', unlikePost)
 
@@ -391,8 +384,6 @@ const unlikePost = function(event) {
 // get post backend 
 function getSpecificPost() {
     
-    //resetPost()
-
     var fetchRequest = {
         method: 'GET',
         headers: {
@@ -402,18 +393,11 @@ function getSpecificPost() {
     };
 
 
-
-
-    // `http://localhost:3000/api/v1/posts?username=${user}`
     // fetch
     fetch(`http://localhost:3000/api/v1/posts?username=${user}`, fetchRequest)
     .then(response => response.json())
     .then(result => {
-        
-        
 
-        
-     
         createPost(result);
 
     })
@@ -430,10 +414,10 @@ document.addEventListener("DOMContentLoaded", getSpecificPost);
 function resetPost() {
     const profilePostSection = document.querySelector('.profile--post-section');
 
-   
     while (profilePostSection.firstChild) {
         profilePostSection.removeChild(profilePostSection.firstChild);
     }
 }
 
+// refresh interval
 setInterval(getSpecificPost, 1000)
