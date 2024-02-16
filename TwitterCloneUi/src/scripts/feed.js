@@ -316,7 +316,7 @@ function getPost() {
     };
 
     // fetch
-    fetch("/api/v1/posts", fetchRequest)
+    fetch(`/api/v1/posts`, fetchRequest)
     .then(response => response.json())
     .then(result => {
         
