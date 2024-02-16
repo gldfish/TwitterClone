@@ -1,32 +1,34 @@
 
+const url = "https://api.twitter.com/1.1/trends/place.json";
 
-// // https://snowcait.github.io/twitter-swagger-ui
 
-// function getTrend() {
+const locationId = 1;
 
-//     var fetchRequest = {
-//         method: 'GET',
-//         headers: {
-//             'Content-Type': 'application/json'
-//         },
-//         redirect: 'follow',
-//     };
+// Authentication credentials
+const apiKey = "fEE5V4FZ9htVJrocMsEtrPZOq";
+const apiSecretKey = "2Xq3eZjn1fslBMzHrqEGDnUFVf47U7cjJRoC07NK904tQvp18m";
+const accessToken = "1753988521663315968-nsZ7KuFDL8ZrsnoullCsAf9oiclR0k";
+const accessTokenSecret = "WGegyFGIKjZjklyUr2XVMBE9XxmXOHAtvJDnSkx53xFfl";
 
-//     fetch(`https://api.twitter.com/2/trends/by/woeid/:woeid`, fetchRequest)
-//         .then(response => response.text())
-//         .then(result => {
-//             console.log(result);
-//             // After successful registration, save user
-            
+// Parameters for the request
+const params = {
+    id: locationId
+};
 
-//             // Proceed with other actions
 
-            
+const authorizationHeader = "Bearer " + btoa(apiKey + ":" + apiSecretKey);
 
-//             //window.location.href = 'index.html';
-//         })
-//         .catch(error => console.log('error', error)
-//     );
-// }
-
-// getTrend()
+// request
+fetch(url + "?id=" + locationId, {
+    method: "GET",
+    headers: {
+        Authorization: authorizationHeader
+    }
+})
+.then(response => response.json())
+.then(data => {
+    console.log(data);
+})
+.catch(error => {
+    console.error("Error fetching trends:", error);
+});

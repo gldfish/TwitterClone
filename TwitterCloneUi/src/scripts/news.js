@@ -11,6 +11,7 @@ async function fetchData(callback) {
         const response = await fetch('https://gnews.io/api/v4/top-headlines?category=general&lang=en&country=us&max=10&apikey=ac90ce7cdeb7254fa73787dfd0fc2d0b');
         const data = await response.json();
         callback(data.articles);
+        console.log(data)
     } catch (error) {
         console.error('Error fetching news data:', error);
         callback(null);
@@ -146,16 +147,21 @@ function DisplayNews(newsColl) {
 
         
         // main append        
+        const imageContainer = document.createElement('div');
+        imageContainer.setAttribute('class', 'image-container')
+
         const image = document.createElement('img');
-        image.src = 'image/computer.jpg';
-        
+        image.src = news['image'];
+
+
+        imageContainer.appendChild(image);
 
         
         newTextContainer.appendChild(textinfo_1);
         newTextContainer.appendChild(newTextContent);
         newTextContainer.appendChild(newTextAdd);
 
-        newNewsPostCont.appendChild(image);
+        newNewsPostCont.appendChild(imageContainer);
         newNewsPostCont.appendChild(newTextContainer);
    
 
