@@ -344,7 +344,7 @@ function getUsers(currFollowing) {
     };
 
     // fetch
-    fetch("/api/v1/users/", fetchRequest)
+    fetch(`/api/v1/users/`, fetchRequest)
     .then(response => response.json())
     .then(result => {
         
