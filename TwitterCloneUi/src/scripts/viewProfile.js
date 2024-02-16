@@ -14,6 +14,8 @@ const viewUser = JSON.parse(viewUserJSON);
 const user = viewUser['viewProfile'];
 const bio = viewUser['bio'];  
 
+const currUserViewer = localStorage.getItem('currentUser');
+
 // username
 const profileName = document.querySelector('.profile-name');
 profileName.textContent = user;
@@ -51,10 +53,84 @@ bioUserSide.textContent = bio;
 const header = document.querySelector('.post-header');
 header.textContent = `${user}'s Posts`
 
+// follow button
+var followButton = document.querySelector('button');
 
 
-function getIsCurrFollowing() {
+function getIsCurrFollowing(userFollowing) {
+    if (userFollowing.includes(user)) {
+        console.log("following")
+        followButton.textContent = "Unfollow";
+        followButton.addEventListener('click', clickUnfollowHandler)
 
+    } else {
+        console.log("not following")
+        followButton.textContent = "Follow";
+        followButton.addEventListener('click', clickFollowHandler)
+    }
+
+}
+
+// follow function
+function clickFollowHandler() {
+    
+    follow(currUserViewer, user);
+
+    console.log(user)
+
+    this.textContent = 'Unfollow';
+
+    this.removeEventListener('click', clickFollowHandler);
+    this.addEventListener('click', clickUnfollowHandler)
+
+}
+
+// unfollow function
+function clickUnfollowHandler() {
+ 
+    unfollow(currUserViewer, user);
+
+    console.log(user)
+
+    this.textContent = 'Follow';
+
+    this.removeEventListener('click', clickUnfollowHandler);
+    this.addEventListener('click', clickFollowHandler)
+
+}
+
+// follow backend
+function follow(currUser, userToFollow) {
+    var requestOptions = {
+        method: 'POST',
+        headers: {
+            Authorization: token
+        },
+        redirect: 'follow'
+    };
+
+
+    fetch(`http://localhost:3000/api/v1/users/${currUser}/following/${userToFollow}`, requestOptions)
+    .then(response => response.text())
+    .then(result => console.log(result))
+    .catch(error => console.log('error', error));
+}
+
+// unfollow backend
+function unfollow(currUser, userToUnfollow) {
+    var requestOptions = {
+        method: 'DELETE',
+        headers: {
+            Authorization: token
+        },
+        redirect: 'follow'
+    };
+    
+
+    fetch(`http://localhost:3000/api/v1/users/${currUser}/following/${userToUnfollow}`, requestOptions)
+    .then(response => response.text())
+    .then(result => console.log(result))
+    .catch(error => console.log('error', error));
 }
 
 
@@ -87,6 +163,9 @@ function getFollowing(currUser) {
 
 
 
+
+
+
 const followingElement = document.querySelector('strong[style="font-size: 14px; font-weight: bold;"]');
 const followingElementMobile = document.querySelector('.mobile-profile-view strong');
 
@@ -95,6 +174,17 @@ getFollowing(user)
     console.log("getfollowog", result)
     followingElementMobile.textContent = result.length;
     followingElement.textContent = result.length;
+    // getIsCurrFollowing(result);
+})
+.catch(error => {
+    
+    console.error('Error:', error);
+});
+
+
+getFollowing(currUserViewer)
+.then(result => {
+    getIsCurrFollowing(result);
 })
 .catch(error => {
     

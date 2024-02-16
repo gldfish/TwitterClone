@@ -226,8 +226,8 @@ body {
 
 
 .profile-user button {
-    margin-top: 1rem;
-    margin-bottom: 2rem;
+    margin-top: 0.6rem;
+    margin-bottom: 1rem;
     font-weight: 600;
     background-color: var(--bg-color-btn);
     color: var(--font-color-light);

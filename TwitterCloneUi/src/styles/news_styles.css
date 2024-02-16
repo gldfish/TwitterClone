@@ -16,6 +16,10 @@ body {
     overflow: hidden;
 }
 
+.news-bio {
+    margin-bottom: 2rem;
+}
+
 
 /* LEFT CONTAINER */
 .news--left-container {

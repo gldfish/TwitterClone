@@ -136,6 +136,7 @@ function createPost(postsList) {
 
     for (let i = postsList.length - 1; i >= 0; i--) {
         
+        
         // create post container
         const addedPost = document.createElement('div');
         addedPost.setAttribute('class', 'feed--post-content');
@@ -196,16 +197,27 @@ function createPost(postsList) {
         // like count
         const likeCount = document.createElement('p');
         likeCount.textContent = `${postsList[i]['likes'].length} Likes`;
-
+        likeCount.setAttribute('class', 'likeCount')
         likeDisplay.appendChild(likeImage);
         likeDisplay.appendChild(likeCount);
 
         // like button
         const likeButton = document.createElement('button');
         likeButton.setAttribute('class', 'likePostBtn');
-        likeButton.innerHTML = '<i class="fa-regular fa-heart"></i>Like';
+
+        if (postsList[i]['likes'].includes(localStorage.getItem('currentUser'))) {
+            likeButton.innerHTML = 'Unlike';
+            likeButton.addEventListener('click', unlikePost)
+
+        }
+        else {
+            likeButton.innerHTML = '<i class="fa-regular fa-heart"></i>Like';
+            likeButton.addEventListener('click', likePost)
+        }
+
         
-        likeButton.addEventListener('click', likePost)
+        
+        
         likeButton.setAttribute('id', postsList[i]['postId']);
         // console.log(postsList[i])
 
@@ -225,9 +237,82 @@ function createPost(postsList) {
 }
 
 // gawa ni jett
-function likePost() {
-    console.log("liek")
+const likePost = function(event){
+    const parentDiv = event.target.parentNode;
     console.log(this.id)
+    const postID = this.id;
+
+    const likeCountElement = parentDiv.querySelector('.likeCount');
+
+    let newLikeCount = parseInt(likeCountElement.textContent);
+    newLikeCount++;
+
+    //likeCountElement.textContent = newLikeCount;
+
+    const likeBtn = parentDiv.querySelector('.likePostBtn');
+    likeBtn.textContent = "Unlike"
+    likeBtn.removeEventListener('click', likePost)
+
+    var raw = JSON.stringify({
+        "action": "like"
+    });
+  
+    var requestOptions = {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: token
+        },
+        body: raw,
+        redirect: 'follow'
+    };
+  
+    fetch(`http://localhost:3000/api/v1/posts/${postID}`, requestOptions)
+    .then(response => response.text())
+    .then(result => console.log(result))
+    .catch(error => console.log('error', error));
+
+    likeBtn.addEventListener('click', unlikePost)
+}
+
+const unlikePost = function(event) {
+    console.log('unlike');
+    const parentDiv = event.target.parentNode;
+    
+    const postID = this.id;
+
+    const likeCountElement = parentDiv.querySelector('.likeCount');
+
+    let newLikeCount = parseInt(likeCountElement.textContent);
+    newLikeCount--;
+
+    //likeCountElement.textContent = newLikeCount;
+
+    const likeBtn = parentDiv.querySelector('.likePostBtn');
+    likeBtn.textContent = "Unlike"
+
+    likeBtn.removeEventListener('click', unlikePost)
+
+    var raw = JSON.stringify({
+        "action": "unlike"
+    });
+
+    var requestOptions = {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: token
+        },
+        body: raw,
+        redirect: 'follow'
+    };
+
+    fetch(`http://localhost:3000/api/v1/posts/${postID}`, requestOptions)
+    .then(response => response.text())
+    .then(result => console.log(result))
+    .catch(error => console.log('error', error));
+
+    likeBtn.addEventListener('click', likePost)
 }
 
 
