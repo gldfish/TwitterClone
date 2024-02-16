@@ -33,6 +33,7 @@ postTextArea.addEventListener("input", () => {
 });
 
 
+
 // post length validation (MOBILE)
 mobileTextArea.addEventListener("input", () => {
     const maxLength = 280;
@@ -46,9 +47,6 @@ mobileTextArea.addEventListener("input", () => {
         mobileCount.textContent = maxLength;
     }
 });
-
-
-
 
 
 
@@ -68,6 +66,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
+
 // submit post MOBILE BUTTON
 document.addEventListener("DOMContentLoaded", function() {
     var postButton = document.querySelector("#mobile--post");
@@ -82,7 +81,6 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 });
-
 
 
 
@@ -111,8 +109,11 @@ function posting() {
 }
 
 
+
 // main feed container
 let feedPostSection = document.querySelector('.feed--post-section');
+
+
 
 // create post
 function createPost(postsList) {
@@ -196,17 +197,11 @@ function createPost(postsList) {
             likeButton.innerHTML = '<i class="fa-regular fa-heart"></i>Like';
             likeButton.addEventListener('click', likePost)
         }
-
-        
-        
         
         likeButton.setAttribute('id', postsList[i]['postId']);
         
-
-
         interactionPost.appendChild(likeDisplay);
         interactionPost.appendChild(likeButton);
-
 
         addedPost.appendChild(userInfoPost)
         addedPost.appendChild(contentText)
@@ -215,8 +210,9 @@ function createPost(postsList) {
         feedPostSection.appendChild(addedPost);
 
     }
-    
 }
+
+
 
 // LIKE FUNCTION
 const likePost = function(event){
@@ -255,6 +251,8 @@ const likePost = function(event){
 
     likeBtn.addEventListener('click', unlikePost)
 }
+
+
 
 //UNLIKE FUNCTION
 const unlikePost = function(event) {
@@ -309,8 +307,6 @@ function resetPost() {
 
 // get post backend 
 function getPost() {
-    
-
     var fetchRequest = {
         method: 'GET',
         headers: {
@@ -330,8 +326,11 @@ function getPost() {
     .catch(error => console.log('error', error));
 }
 
+
+
 // on page load
 document.addEventListener("DOMContentLoaded", getPost);
+
 
 
 // get users
@@ -392,6 +391,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
+
 // people you may know section
 const followContainer = document.querySelector(".follow-container");
 function createProfileSide(usersList, currFollowing) {
@@ -444,6 +444,7 @@ function createProfileSide(usersList, currFollowing) {
 }   
 
 
+
 // view profile 
 function viewUserProfile() {
 
@@ -476,6 +477,7 @@ function clickFollowHandler() {
 }
 
 
+
 // unfollow func
 function clickUnfollowHandler() {
     const userToUnfollow = this.id;
@@ -489,6 +491,7 @@ function clickUnfollowHandler() {
 
     getPost();
 }
+
 
 
 // follow backend
@@ -509,6 +512,7 @@ function follow(currUser, userToFollow) {
 }
 
 
+
 // unfollow backend
 function unfollow(currUser, userToUnfollow) {
     var requestOptions = {
@@ -525,6 +529,8 @@ function unfollow(currUser, userToUnfollow) {
     .then(result => console.log(result))
     .catch(error => console.log('error', error));
 }
+
+
 
 //interval for refresh
 setInterval(getPost, 1000);

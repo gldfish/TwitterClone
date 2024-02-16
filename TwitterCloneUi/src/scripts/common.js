@@ -57,6 +57,7 @@ function toggleDiscoverSection(right, middle) {
 }
 
 
+
 function adjustGridColumn(right, middle) {
     var screenWidth = window.innerWidth; 
     var discoverSections = document.getElementsByClassName(right);
@@ -85,6 +86,9 @@ function adjustGridColumn(right, middle) {
 
     }
 }
+
+
+
 
 
 window.addEventListener("resize", function() {

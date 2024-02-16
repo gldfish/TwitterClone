@@ -45,8 +45,6 @@ postTextArea.addEventListener("input", () => {
 
 
 
-
-
 // create post
 function createPost(postsList) {
     resetPost(profilePostSection);
@@ -126,13 +124,9 @@ function createPost(postsList) {
             likeButton.innerHTML = '<i class="fa-regular fa-heart"></i>Like';
             likeButton.addEventListener('click', likePost)
         }
-
-        
-        
         
         likeButton.setAttribute('id', postsList[i]['postId']);
         
-
         postInteraction.appendChild(likeDisplay);
         postInteraction.appendChild(likeButton);
 

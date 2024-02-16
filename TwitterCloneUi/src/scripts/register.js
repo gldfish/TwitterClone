@@ -1,5 +1,3 @@
-
-
 document.getElementById('nextButton').addEventListener('click', function() {
     // Get the entered username
     const newUsername = document.querySelector('.register--input-field').value;
@@ -22,8 +20,6 @@ document.getElementById('nextButton').addEventListener('click', function() {
         localStorage.setItem('newUsername', newUsername);
         window.location.href = 'register2.html';
     }
-
-    
 
 
 });

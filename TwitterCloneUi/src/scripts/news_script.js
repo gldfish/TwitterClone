@@ -137,7 +137,7 @@ function viewUserProfile() {
 }
 
 
-
+// follow function
 function clickFollowHandler() {
     const userToFollow = this.id;
     const currUser = localStorage.getItem('currentUser');
@@ -152,7 +152,7 @@ function clickFollowHandler() {
 }
 
 
-// sample unfollow func
+// unfollow function
 function clickUnfollowHandler() {
     const userToUnfollow = this.id;
     const currUser = localStorage.getItem('currentUser');
@@ -165,6 +165,7 @@ function clickUnfollowHandler() {
 
     getPost();
 }
+
 
 
 // follow backend
@@ -195,7 +196,6 @@ function unfollow(currUser, userToUnfollow) {
         redirect: 'follow'
     };
     
-
     fetch(`http://localhost:3000/api/v1/users/${currUser}/following/${userToUnfollow}`, requestOptions)
     .then(response => response.text())
     .then(result => console.log(result))

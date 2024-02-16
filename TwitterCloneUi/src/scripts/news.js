@@ -18,14 +18,20 @@ async function fetchData(callback) {
     }
 }
 
+
+
 function NewsPage(callback) {
     fetchData(callback);
 }
+
+
 
 NewsPage(newsData => {
     setNewsColl(newsData);
     DisplayNews(newsColl);
 });
+
+
 
 function DisplayNews(newsColl) {
     
@@ -138,11 +144,8 @@ function DisplayNews(newsColl) {
 
         newsContainer.appendChild(newNewsPostCont);
         
-
     }
 }
-
-
 
 
 export { NewsPage };
