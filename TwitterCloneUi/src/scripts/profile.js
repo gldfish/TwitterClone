@@ -23,6 +23,32 @@ let token = getExistingUser(localStorage.getItem('currentUser'))['token'];
 // main feed container
 let profilePostSection = document.querySelector('.profile--post-section');
 
+
+// post validation
+
+let charCount = document.getElementById('char-count');
+let postTextArea = document.getElementById('postTextarea');
+
+postTextArea.addEventListener("input", () => {
+    const maxLength = 280;
+    const currentLength = postTextArea.value.length;
+    charCount.textContent = currentLength;
+
+    // Check if the current length exceeds the maximum length
+    if (currentLength > maxLength) {
+        alert("Post length should not exceed 280 characters.");
+        // Truncate the text to the maximum length
+        postTextArea.value = postTextArea.value.substring(0, maxLength);
+        // Update the character count display
+        charCount.textContent = maxLength;
+    }
+});
+
+
+
+
+
+
 // create post
 function createPost(postsList) {
     resetPost(profilePostSection);
@@ -88,13 +114,32 @@ function createPost(postsList) {
 
         const likeCount = document.createElement('p');
         likeCount.textContent = `${postsList[i]['likes'].length} Likes`;
+        likeCount.setAttribute('class', 'likeCount')
+
 
         likeDisplay.appendChild(likeImage);
         likeDisplay.appendChild(likeCount);
 
+        // like button
         const likeButton = document.createElement('button');
-        likeButton.classList.add('likePostBtn');
-        likeButton.innerHTML = '<i class="fa-regular fa-heart"></i>Like';
+        likeButton.setAttribute('class', 'likePostBtn');
+
+
+        if (postsList[i]['likes'].includes(localStorage.getItem('currentUser'))) {
+            likeButton.innerHTML = 'Unlike';
+            likeButton.addEventListener('click', unlikePost)
+
+        }
+        else {
+            likeButton.innerHTML = '<i class="fa-regular fa-heart"></i>Like';
+            likeButton.addEventListener('click', likePost)
+        }
+
+        
+        
+        
+        likeButton.setAttribute('id', postsList[i]['postId']);
+        // console.log(postsList[i])
 
         postInteraction.appendChild(likeDisplay);
         postInteraction.appendChild(likeButton);
@@ -107,6 +152,84 @@ function createPost(postsList) {
         // Append postContent to profilePostSection
         profilePostSection.appendChild(postContent);
     }
+}
+
+const likePost = function(event){
+    const parentDiv = event.target.parentNode;
+    console.log(this.id)
+    const postID = this.id;
+
+    const likeCountElement = parentDiv.querySelector('.likeCount');
+
+    let newLikeCount = parseInt(likeCountElement.textContent);
+    newLikeCount++;
+
+    //likeCountElement.textContent = newLikeCount;
+
+    const likeBtn = parentDiv.querySelector('.likePostBtn');
+    likeBtn.textContent = "Unlike"
+    likeBtn.removeEventListener('click', likePost)
+
+    var raw = JSON.stringify({
+        "action": "like"
+    });
+  
+    var requestOptions = {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: token
+        },
+        body: raw,
+        redirect: 'follow'
+    };
+  
+    fetch(`http://localhost:3000/api/v1/posts/${postID}`, requestOptions)
+    .then(response => response.text())
+    .then(result => console.log(result))
+    .catch(error => console.log('error', error));
+
+    likeBtn.addEventListener('click', unlikePost)
+}
+
+const unlikePost = function(event) {
+    console.log('unlike');
+    const parentDiv = event.target.parentNode;
+    
+    const postID = this.id;
+
+    const likeCountElement = parentDiv.querySelector('.likeCount');
+
+    let newLikeCount = parseInt(likeCountElement.textContent);
+    newLikeCount--;
+
+    //likeCountElement.textContent = newLikeCount;
+
+    const likeBtn = parentDiv.querySelector('.likePostBtn');
+    likeBtn.textContent = "Unlike"
+
+    likeBtn.removeEventListener('click', unlikePost)
+
+    var raw = JSON.stringify({
+        "action": "unlike"
+    });
+
+    var requestOptions = {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: token
+        },
+        body: raw,
+        redirect: 'follow'
+    };
+
+    fetch(`http://localhost:3000/api/v1/posts/${postID}`, requestOptions)
+    .then(response => response.text())
+    .then(result => console.log(result))
+    .catch(error => console.log('error', error));
+
+    likeBtn.addEventListener('click', likePost)
 }
 
 
@@ -246,3 +369,6 @@ getFollowing(localStorage.getItem('currentUser'))
         
         console.error('Error:', error);
     });
+
+
+setInterval(getPost, 1000)
