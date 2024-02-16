@@ -269,7 +269,7 @@ function posting() {
    };
 
    // fetch
-   fetch("/api/v1/posts", fetchRequest)
+   fetch(`/api/v1/posts`, fetchRequest)
    .then(response => response.text())
    .then(result => console.log(result))
    .catch(error => console.log('error', error));
@@ -290,7 +290,7 @@ function getPost() {
     };
 
     // fetch
-    fetch("/api/v1/posts", fetchRequest)
+    fetch(`/api/v1/posts`, fetchRequest)
     .then(response => response.json())
     .then(result => {
         
