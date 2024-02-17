@@ -324,7 +324,9 @@ async function getPost() {
         const response = await fetch(`/api/v1/posts`, fetchRequest);
         const result = await response.json();
         console.log(token);
-        createPost(sortPostsByDateTime(result));
+        console.log(response)
+        console.log(result)
+        await createPost(sortPostsByDateTime(result));
     } catch (error) {
         console.log('error', error);
     }
