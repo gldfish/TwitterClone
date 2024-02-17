@@ -36,6 +36,18 @@ document.getElementById('nextButton_2').addEventListener('click', function(event
     firstPassword = document.querySelector('#userPassword1').value;
     finalPassword = document.querySelector('#userPassword2').value;
 
+     // Check if bio is empty
+     if (bio.trim() === '') {
+        alert("Bio cannot be empty!");
+        return;
+    }
+
+    // Check if passwords are empty
+    if (firstPassword.trim() === '' || finalPassword.trim() === '') {
+        alert("Password cannot be empty!");
+        return;
+    }
+
     // Check if passwords match
     if (firstPassword !== finalPassword) {
         alert("Passwords don't match!");

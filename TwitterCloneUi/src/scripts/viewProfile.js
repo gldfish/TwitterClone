@@ -334,6 +334,7 @@ const likePost = function(event){
     .catch(error => console.log('error', error));
 
     likeBtn.addEventListener('click', unlikePost)
+    getSpecificPost()
 }
 
 const unlikePost = function(event) {
@@ -374,6 +375,7 @@ const unlikePost = function(event) {
     .catch(error => console.log('error', error));
 
     likeBtn.addEventListener('click', likePost)
+    getSpecificPost()
 }
 
 
@@ -420,4 +422,4 @@ function resetPost() {
 }
 
 // refresh interval
-setInterval(getSpecificPost, 1000)
+//setInterval(getSpecificPost, 1000)

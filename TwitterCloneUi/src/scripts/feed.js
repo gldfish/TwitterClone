@@ -250,6 +250,7 @@ const likePost = function(event){
     .catch(error => console.log('error', error));
 
     likeBtn.addEventListener('click', unlikePost)
+    getPost();
 }
 
 
@@ -292,6 +293,7 @@ const unlikePost = function(event) {
     .catch(error => console.log('error', error));
 
     likeBtn.addEventListener('click', likePost)
+    getPost();
 }
 
 
@@ -319,7 +321,7 @@ function getPost() {
     fetch(`/api/v1/posts`, fetchRequest)
     .then(response => response.json())
     .then(result => {
-        
+        console.log(token)
         createPost(sortPostsByDateTime(result));
 
     })
@@ -533,4 +535,4 @@ function unfollow(currUser, userToUnfollow) {
 
 
 //interval for refresh
-setInterval(getPost, 1000);
+//setInterval(getPost, 1000);
