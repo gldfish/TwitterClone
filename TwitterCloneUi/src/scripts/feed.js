@@ -359,7 +359,7 @@ function getUsers(currFollowing) {
 
 
 
-function getFollowing(currUser) {
+async function getFollowing(currUser) {
     var requestOptions = {
         method: 'GET',
         headers: {
@@ -368,31 +368,28 @@ function getFollowing(currUser) {
         redirect: 'follow'
     };
 
-    
-    return fetch(`/api/v1/users/${currUser}/following`, requestOptions)
-        .then(response => response.text())
-        .then(result => {
-            
-            return JSON.parse(result);
-        })
-        .catch(error => {
-            console.log('error', error);
-            throw error; 
-        });
+    try {
+        const response = await fetch(`/api/v1/users/${currUser}/following`, requestOptions);
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const result = await response.text();
+        console.log(JSON.parse(result));
+        return JSON.parse(result);
+    } catch (error) {
+        console.error('Error:', error);
+        throw error;
+    }
 }
 
-
-document.addEventListener("DOMContentLoaded", function() {
-    getFollowing(localStorage.getItem('currentUser'))
-        .then(currFollowing => {
-            getUsers(currFollowing)
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
+document.addEventListener("DOMContentLoaded", async function() {
+    try {
+        const currFollowing = await getFollowing(localStorage.getItem('currentUser'));
+        getUsers(currFollowing);
+    } catch (error) {
+        console.error('Error:', error);
+    }
 });
-
-
 
 // people you may know section
 const followContainer = document.querySelector(".follow-container");
