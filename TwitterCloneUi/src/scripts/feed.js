@@ -10,6 +10,9 @@ updateProfile('.mobile--profile-name', '.mobile--profile-handler', '.mobile--pro
 
 let userPostContent;
 let token = getExistingUser(localStorage.getItem('currentUser'))['token'];
+const tokenWithoutBearer = token.replace("Bearer ", "");
+
+console.log(tokenWithoutBearer)
 
 let postTextArea = document.getElementById('postText');
 let mobileTextArea = document.getElementById('postTextMobile');
@@ -95,7 +98,7 @@ function posting() {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            Authorization: token
+            "Authorization": `Bearer ${tokenWithoutBearer}`
         },
         body: raw,
         redirect: 'follow'
@@ -238,7 +241,7 @@ const likePost = function(event){
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json',
-            Authorization: token
+            "Authorization": `Bearer ${tokenWithoutBearer}`
         },
         body: raw,
         redirect: 'follow'
@@ -281,7 +284,7 @@ const unlikePost = function(event) {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json',
-            Authorization: token
+            "Authorization": `Bearer ${tokenWithoutBearer}`
         },
         body: raw,
         redirect: 'follow'
@@ -312,7 +315,7 @@ async function getPost() {
     var fetchRequest = {
         method: 'GET',
         headers: {
-            Authorization: token
+            "Authorization": `Bearer ${tokenWithoutBearer}`
         },
         redirect: 'follow'
     };
@@ -339,7 +342,7 @@ function getUsers(currFollowing) {
     var fetchRequest = {
         method: 'GET',
         headers: {
-            Authorization: token
+            "Authorization": `Bearer ${tokenWithoutBearer}`
         },
         redirect: 'follow'
     };
@@ -362,7 +365,7 @@ async function getFollowing(currUser) {
     var requestOptions = {
         method: 'GET',
         headers: {
-            Authorization: token
+            "Authorization": `Bearer ${tokenWithoutBearer}`
         },
         redirect: 'follow'
     };
@@ -497,7 +500,7 @@ function follow(currUser, userToFollow) {
     var requestOptions = {
         method: 'POST',
         headers: {
-            Authorization: token
+            "Authorization": `Bearer ${tokenWithoutBearer}`
         },
         redirect: 'follow'
     };
@@ -516,7 +519,7 @@ function unfollow(currUser, userToUnfollow) {
     var requestOptions = {
         method: 'DELETE',
         headers: {
-            Authorization: token
+            "Authorization": `Bearer ${tokenWithoutBearer}`
         },
         redirect: 'follow'
     };
