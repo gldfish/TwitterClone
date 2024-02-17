@@ -308,7 +308,7 @@ function resetPost() {
 
 
 // get post backend 
-function getPost() {
+async function getPost() {
     var fetchRequest = {
         method: 'GET',
         headers: {
@@ -317,15 +317,14 @@ function getPost() {
         redirect: 'follow'
     };
 
-    // fetch
-    fetch(`/api/v1/posts`, fetchRequest)
-    .then(response => response.json())
-    .then(result => {
-        console.log(token)
+    try {
+        const response = await fetch(`/api/v1/posts`, fetchRequest);
+        const result = await response.json();
+        console.log(token);
         createPost(sortPostsByDateTime(result));
-
-    })
-    .catch(error => console.log('error', error));
+    } catch (error) {
+        console.log('error', error);
+    }
 }
 
 
