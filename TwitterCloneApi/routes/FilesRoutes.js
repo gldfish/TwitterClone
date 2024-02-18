@@ -19,3 +19,6 @@ router.get("/", (req, res) => {
     usersFile: JSON.parse(usersFile) ?? "EMPTY",
   });
 });
+
+
+export default router
