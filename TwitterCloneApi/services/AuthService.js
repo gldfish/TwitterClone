@@ -25,6 +25,7 @@ function registerUser(username, password) {
 }
 
 function authorizeUser(username, password) {
+  deserialize();
   console.log(users);
   const user = users.find(
     (user) => user.username === username && user.password === password
@@ -45,6 +46,7 @@ function authorizeUser(username, password) {
 }
 
 function authenticateToken(req, res, next) {
+  deserialize();
   const authHeader = req.headers["authorization"];
   const token = authHeader && authHeader.split(" ")[1];
 

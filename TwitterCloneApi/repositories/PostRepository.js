@@ -34,6 +34,7 @@ function createPost(username, post, dateTimePosted) {
 }
 
 function getPostOfUser(username) {
+  deserialize();
   if (postsPerUser[username] === undefined) {
     throw new DataAccessError("User does not exist");
   }
@@ -41,6 +42,7 @@ function getPostOfUser(username) {
 }
 
 function getFeedOfUser(username, followingUsernames) {
+  deserialize();
   const feed = [...getPostOfUser(username)];
   for (const username of followingUsernames) {
     if (postsPerUser[username] !== undefined) {
@@ -51,6 +53,7 @@ function getFeedOfUser(username, followingUsernames) {
 }
 
 function getPost(postId) {
+  deserialize();
   for (const [_, posts] of Object.entries(postsPerUser)) {
     for (const post of posts) {
       const currentPostId = post.postId;

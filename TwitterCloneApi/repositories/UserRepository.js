@@ -30,6 +30,7 @@ function createUser(username) {
 }
 
 function isExistingUser(username) {
+  deserialize();
   return users[username] !== undefined;
 }
 
@@ -64,6 +65,7 @@ function unfollowUser(usernameOfFollower, usernameToUnfollow) {
 }
 
 function getFollowingUsernames(usernameOfFollower) {
+  deserialize();
   const user = users[usernameOfFollower];
   if (user === undefined) {
     throw new DataAccessError(`${usernameOfFollower} does not exist`);
@@ -72,6 +74,7 @@ function getFollowingUsernames(usernameOfFollower) {
 }
 
 function getAllUsers() {
+  deserialize();
   return Object.keys(users);
 }
 
