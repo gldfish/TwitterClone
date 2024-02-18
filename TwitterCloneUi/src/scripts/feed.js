@@ -389,7 +389,7 @@ async function getFollowing(currUser) {
 document.addEventListener("DOMContentLoaded", async function() {
     try {
         const currFollowing = await getFollowing(localStorage.getItem('currentUser'));
-        getUsers(currFollowing);
+        await getUsers(currFollowing);
     } catch (error) {
         console.error('Error:', error);
     }
