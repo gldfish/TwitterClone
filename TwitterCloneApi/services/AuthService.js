@@ -13,6 +13,7 @@ function deserialize() {
 }
 
 function registerUser(username, password) {
+  deserialize();
   const user = {
     username,
     password,

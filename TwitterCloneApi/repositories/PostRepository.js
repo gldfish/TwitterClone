@@ -14,6 +14,7 @@ function deserialize() {
 }
 
 function createPost(username, post, dateTimePosted) {
+  deserialize();
   if (postsPerUser[username] === undefined) {
     throw new DataAccessError("User does not exist");
   }
@@ -61,6 +62,7 @@ function getPost(postId) {
 }
 
 function likePost(username, postId) {
+  deserialize();
   const post = getPost(postId);
   if (post === undefined) {
     throw new DataAccessError("Post does not exist");
@@ -75,6 +77,7 @@ function likePost(username, postId) {
 }
 
 function unlikePost(username, postId) {
+  deserialize();
   const post = getPost(postId);
   if (post === undefined) {
     throw new DataAccessError("Post does not exist");
@@ -88,6 +91,7 @@ function unlikePost(username, postId) {
 }
 
 function initializePosts(username) {
+  deserialize();
   postsPerUser[username] = [];
   serialize();
 }

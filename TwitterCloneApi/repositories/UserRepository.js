@@ -13,6 +13,7 @@ function deserialize() {
 }
 
 function createUser(username) {
+  deserialize();
   if (isExistingUser(username)) {
     throw new DataAccessError(
       `User with username '${username}' already exists`
@@ -32,6 +33,7 @@ function isExistingUser(username) {
 }
 
 function followUser(usernameOfFollower, usernameToFollow) {
+  deserialize();
   const user = users[usernameOfFollower];
   if (user === undefined) {
     throw new DataAccessError(`${usernameOfFollower} does not exist`);
@@ -47,6 +49,7 @@ function followUser(usernameOfFollower, usernameToFollow) {
 }
 
 function unfollowUser(usernameOfFollower, usernameToUnfollow) {
+  deserialize();
   const user = users[usernameOfFollower];
   if (user === undefined) {
     throw new DataAccessError(`${usernameOfFollower} does not exist`);
