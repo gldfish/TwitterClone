@@ -3,7 +3,7 @@ import DataAccessError from "./DataAccessError.js";
 import FileDao from "./FileDao.js";
 
 const FILE_NAME = "POSTS";
-const postsPerUser = {};
+let postsPerUser = {};
 deserialize()
 
 function serialize() {
