@@ -12,10 +12,10 @@ function withErrorHandling(func) {
       return func(...params);
     } catch (error) {
       if (error.name === DataAccessError.Name) {
-        return res.status(400).send(error.message);
+        return res.status(400).send(error.message + " STACK: ", error.stack);
       }
       if (error.name === BadRequestError.Name) {
-        return res.status(400).send(error.message);
+        return res.status(400).send(error.message + " STACK: ", error.stack);
       }
       return res.status(500).send(`Internal server error: ${error.message} ${error.stack}`);
     }
