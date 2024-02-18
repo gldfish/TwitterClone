@@ -13,20 +13,25 @@ router.get("/", (req, res) => {
 
   const authFile = fs.existsSync(AUTH_FILE_PATH)
     ? fs.readFileSync(AUTH_FILE_PATH, "utf-8")
-    : "File not found";
+    : "{'message': 'File not found'}";
   const postsFile = fs.existsSync(POSTS_FILE_PATH)
     ? fs.readFileSync(POSTS_FILE_PATH, "utf-8")
-    : "File not found";
+    : "{'message': 'File not found'}";
   const usersFile = fs.existsSync(USERS_FILE_PATH)
     ? fs.readFileSync(USERS_FILE_PATH, "utf-8")
-    : "File not found";
+    : "{'message': 'File not found'}";
 
   return res.json({
-    authFile: authFile,
-    postsFile: postsFile,
-    usersFile: usersFile,
+    authFile: JSON.parse(
+      authFile == "" ? "{'message': 'File is empty'}" : authFile
+    ),
+    postsFile: JSON.parse(
+      postsFile == "" ? "{'message': 'File is empty'}" : postsFile
+    ),
+    usersFile: JSON.parse(
+      usersFile == "" ? "{'message': 'File is empty'}" : usersFile
+    ),
   });
 });
 
-
-export default router
+export default router;
