@@ -149,7 +149,7 @@ Happy coding! 🚀🐦
 > [!NOTE]  
 > We used Netlify to deploy our website to the web. Netlify not only supports static sites but also has robust support for Node.js applications. This flexibility allowed us to deploy our website seamlessly, whether it's a static site or a dynamic Node.js application.
 > 
-> https://telelet-web.netlify.app/
+> https://telelet-net.netlify.app/
 
 <br>
 
