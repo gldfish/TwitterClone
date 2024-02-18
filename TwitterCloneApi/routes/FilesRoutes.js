@@ -13,23 +13,23 @@ router.get("/", (req, res) => {
 
   const authFile = fs.existsSync(AUTH_FILE_PATH)
     ? fs.readFileSync(AUTH_FILE_PATH, "utf-8")
-    : "{'message': 'File not found'}";
+    : `{"message": "File not found"}`;
   const postsFile = fs.existsSync(POSTS_FILE_PATH)
     ? fs.readFileSync(POSTS_FILE_PATH, "utf-8")
-    : "{'message': 'File not found'}";
+    : `{"message": "File not found"}`;
   const usersFile = fs.existsSync(USERS_FILE_PATH)
     ? fs.readFileSync(USERS_FILE_PATH, "utf-8")
-    : "{'message': 'File not found'}";
+    : `{"message": "File not found"}`;
 
   return res.json({
     authFile: JSON.parse(
-      authFile == "" ? "{'message': 'File is empty'}" : authFile
+      authFile == "" ? `{"message": "File is empty"}` : authFile
     ),
     postsFile: JSON.parse(
-      postsFile == "" ? "{'message': 'File is empty'}" : postsFile
+      postsFile == "" ? `{"message": "File is empty"}` : postsFile
     ),
     usersFile: JSON.parse(
-      usersFile == "" ? "{'message': 'File is empty'}" : usersFile
+      usersFile == "" ? `{"message": "File is empty"}` : usersFile
     ),
   });
 });
