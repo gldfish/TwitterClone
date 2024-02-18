@@ -88,9 +88,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 // posting back end
-function posting() {
-     // body for header
-     var raw = JSON.stringify({
+async function posting() {
+    // body for header
+    var raw = JSON.stringify({
         "content": userPostContent
     });
 
@@ -104,11 +104,14 @@ function posting() {
         redirect: 'follow'
     };
 
-    // fetch
-    fetch(`/api/v1/posts`, fetchRequest)
-    .then(response => response.text())
-    .then(result => console.log(result))
-    .catch(error => console.log('error', error));
+    try {
+        // fetch
+        const response = await fetch(`/api/v1/posts`, fetchRequest);
+        const result = await response.text();
+        console.log(result);
+    } catch (error) {
+        console.log('error', error);
+    }
 }
 
 
@@ -340,7 +343,7 @@ document.addEventListener("DOMContentLoaded", getPost);
 
 
 // get users
-function getUsers(currFollowing) {
+async function getUsers(currFollowing) {
     var fetchRequest = {
         method: 'GET',
         headers: {
@@ -349,18 +352,16 @@ function getUsers(currFollowing) {
         redirect: 'follow'
     };
 
-    // fetch
-    fetch(`/api/v1/users/`, fetchRequest)
-    .then(response => response.json())
-    .then(result => {
+    try {
+        // fetch
+        const response = await fetch(`/api/v1/users/`, fetchRequest);
+        const result = await response.json();
         
-
-        createProfileSide(result, currFollowing)
-
-    })
-    .catch(error => console.log('error', error));
+        createProfileSide(result, currFollowing);
+    } catch (error) {
+        console.log('error', error);
+    }
 }
-
 
 
 async function getFollowing(currUser) {
