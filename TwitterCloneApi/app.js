@@ -25,6 +25,6 @@ app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/posts", postsRoutes);
 app.use("/api/v1/users", usersRoutes);
 app.use("/api/v1/users", followersRoutes);
-app.use("/api/v1/files", fileRoutes);
+app.use("/api/v1/files", filesRoutes);
 
 export default app;
