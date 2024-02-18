@@ -10,13 +10,21 @@ router.get("/", (req, res) => {
   const AUTH_FILE_PATH = path.join(rootFolder, "AUTH.json");
   const POSTS_FILE_PATH = path.join(rootFolder, "POSTS.json");
   const USERS_FILE_PATH = path.join(rootFolder, "USERS.json");
-  const authFile = fs.readFileSync(AUTH_FILE_PATH, "utf-8");
-  const postsFile = fs.readFileSync(POSTS_FILE_PATH, "utf-8");
-  const usersFile = fs.readFileSync(USERS_FILE_PATH, "utf-8");
+
+  const authFile = fs.existsSync(AUTH_FILE_PATH)
+    ? fs.readFileSync(AUTH_FILE_PATH, "utf-8")
+    : "File not found";
+  const postsFile = fs.existsSync(POSTS_FILE_PATH)
+    ? fs.readFileSync(POSTS_FILE_PATH, "utf-8")
+    : "File not found";
+  const usersFile = fs.existsSync(USERS_FILE_PATH)
+    ? fs.readFileSync(USERS_FILE_PATH, "utf-8")
+    : "File not found";
+
   return res.json({
-    authFile: JSON.parse(authFile) ?? "EMPTY",
-    postsFile: JSON.parse(postsFile) ?? "EMPTY",
-    usersFile: JSON.parse(usersFile) ?? "EMPTY",
+    authFile: authFile,
+    postsFile: postsFile,
+    usersFile: usersFile,
   });
 });
 
