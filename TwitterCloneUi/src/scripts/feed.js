@@ -106,7 +106,7 @@ async function posting() {
 
     try {
         // fetch
-        const response = await fetch(`/api/v1/posts`, fetchRequest);
+        const response = await fetch('/api/v1/posts', fetchRequest);
         const result = await response.text();
         console.log(result);
     } catch (error) {
@@ -324,7 +324,7 @@ async function getPost() {
     };
 
     try {
-        const response = await fetch(`/api/v1/posts`, fetchRequest);
+        const response = await fetch('/api/v1/posts', fetchRequest);
         const result = await response.json();
         console.log(token);
         console.log(response)
