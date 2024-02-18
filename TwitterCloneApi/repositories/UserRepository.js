@@ -2,14 +2,15 @@ import DataAccessError from "./DataAccessError.js";
 import FileDao from "./FileDao.js";
 
 const FILE_NAME = "USERS";
-const users = deserialize() ?? {};
+let users = {};
+deserialize()
 
 function serialize() {
   FileDao.saveData(FILE_NAME, users);
 }
 
 function deserialize() {
-  return FileDao.retrieveData(FILE_NAME);
+  users = FileDao.retrieveData(FILE_NAME) ?? {};
 }
 
 function createUser(username) {

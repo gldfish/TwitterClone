@@ -3,14 +3,15 @@ import DataAccessError from "./DataAccessError.js";
 import FileDao from "./FileDao.js";
 
 const FILE_NAME = "POSTS";
-const postsPerUser = deserialize() ?? {};
+const postsPerUser = {};
+deserialize()
 
 function serialize() {
   FileDao.saveData(FILE_NAME, postsPerUser);
 }
 
 function deserialize() {
-  return FileDao.retrieveData(FILE_NAME);
+  postsPerUser = FileDao.retrieveData(FILE_NAME) ?? {};
 }
 
 function createPost(username, post, dateTimePosted) {
