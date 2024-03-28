@@ -44,6 +44,100 @@ Follow these steps to set up and run the Twitter Clone project:
 <br />
 
 
+## Functionalities
+
+## 1. Register
+> [!TIP]
+> Users can create new accounts.
+
+<br />
+
+![image](https://github.com/grgttdln/TwitterClone/assets/85463029/faaf642e-740c-4062-9473-144ab9a5a586)
+
+
+![image](https://github.com/grgttdln/TwitterClone/assets/85463029/ccf99f43-8ef9-414d-b116-770fab33f4a6)
+
+<br />
+
+
+## 2. Login
+> [!TIP]
+> Users log in to existing ones to access the platform.
+
+<br />
+
+![image](https://github.com/grgttdln/TwitterClone/assets/85463029/c995429a-0b64-43d4-9cdb-3d6a229a8f77)
+
+
+<br />
+
+
+## 3. Follow and Unfollow
+> [!TIP]
+> Users can follow other users to see their posts in their feed. They can also unfollow users to stop seeing their posts.
+
+<br />
+
+![image](https://github.com/grgttdln/TwitterClone/assets/85463029/4f811027-3c2a-492e-811e-411b9ce26c60)
+
+![image](https://github.com/grgttdln/TwitterClone/assets/85463029/3a795712-8533-486b-83e2-c2df27e9297d)
+
+
+<br />
+
+## 4. Create Post
+> [!TIP]
+> Users can compose and share their thoughts, photos, videos, or links with their followers.
+
+<br />
+
+![image](https://github.com/grgttdln/TwitterClone/assets/85463029/67849efa-2f00-46ce-8220-60400a4d57fb)
+
+<br />
+
+## 5. Show User Feed
+> [!TIP]
+> Users can view a feed that displays posts from the users they follow, allowing them to stay updated with the latest content from their network.
+
+<br />
+
+![image](https://github.com/grgttdln/TwitterClone/assets/85463029/85286451-b8db-4bb7-ac8d-4457f0c6924a)
+
+<br />
+
+
+## 6. Show Profile Feed
+> [!TIP]
+> Users can access other users and their own profile feed, which displays all the posts they have shared on the platform.
+
+<br />
+
+![image](https://github.com/grgttdln/TwitterClone/assets/85463029/ea56ab86-076b-4940-98b8-c650f87c66a7)
+
+
+<br />
+
+
+## 7. Like and Unlike Post
+Users can express their appreciation for a post by liking it. They can also undo their like by unliking the post.
+
+<br />
+
+![image](https://github.com/grgttdln/TwitterClone/assets/85463029/3ef0cf2c-7bec-4d2b-aac6-772d804effca)
+
+<br />
+
+## 8. News
+> [!TIP]
+> Users can stay informed about current events and trending topics through a dedicated section that aggregates news and discussions from across the platform.
+
+<br />
+
+![image](https://github.com/grgttdln/TwitterClone/assets/85463029/6d80f37c-92e3-4863-af28-35d6d2918fe5)
+
+<br />
+<br />
+
 ## Discussion
 
 ## 1. 💬 
